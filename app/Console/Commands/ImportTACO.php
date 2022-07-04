@@ -68,6 +68,10 @@ class ImportTACO extends Command
     public function handle()
     {
         
+        $this->info("Iniciando importação da Tabela TACO");
+
+        // $this->call('cache:clear');
+
         $cmvcol_path = "/var/www/html/storage/app/public/csvs/cmvcol.csv";
         $ag_path = "/var/www/html/storage/app/public/csvs/ag.csv";
         $amino_path = "/var/www/html/storage/app/public/csvs/amino.csv";
@@ -129,6 +133,8 @@ class ImportTACO extends Command
             ]);
         }
 
+        $this->info("CMVCol concluído");
+
         // lidando com o ag
 
         $ag_note = $this->open_and_read($ag_path);
@@ -160,8 +166,9 @@ class ImportTACO extends Command
                 '18:1t_g' => $this->fieldTest($g['18:1t_g']),
                 '18:2t_g' => $this->fieldTest($g['18:2t_g']),
             ]);
-
         }
+
+        $this->info("Ácido Graxo concluído");
 
         // lidando com o amino
 
@@ -190,7 +197,8 @@ class ImportTACO extends Command
                 'proline_g' => $this->fieldTest($am['proline_g']),
                 'serine_g' => $this->fieldTest($am['serine_g']),
             ]);
-
         }
+
+        $this->info("Aminoácido concluído");
     }
 }
