@@ -11,6 +11,8 @@ use App\Models\Category;
 
 use App\Models\Variation;
 use App\Models\CMVCol;
+use App\Models\AG;
+use App\Models\Aminoacid;
 
 class ImportTACO extends Command
 {
@@ -27,6 +29,21 @@ class ImportTACO extends Command
      * @var string
      */
     protected $description = 'Importa a Tabela TACO.';
+
+    public function open_and_read ($path) {
+
+        $taco = fopen($path, 'r');
+
+        $header = fgetcsv($taco, filesize($path), ",");
+
+        while ($row = fgetcsv($taco, filesize($path), ",")) {
+            $nota[] = array_combine($header, $row);
+        }
+
+        fclose($taco);
+
+        return $nota;
+    }
 
 
     public function fieldTest ($field) {
@@ -51,34 +68,26 @@ class ImportTACO extends Command
     public function handle()
     {
         
-        // abrindo o csv
-        // $path = storage_path('app/public/csvs/cmvcol.csv');
+        $cmvcol_path = "/var/www/html/storage/app/public/csvs/cmvcol.csv";
+        $ag_path = "/var/www/html/storage/app/public/csvs/ag.csv";
+        $amino_path = "/var/www/html/storage/app/public/csvs/amino.csv";
 
-        $caminho = "/var/www/html/storage/app/public/csvs/cmvcol.csv";
+        if(!File::exists($cmvcol_path)) \Log::info('Falha no cmvcol');
+        if(!File::exists($ag_path)) \Log::info('Falha no ag');
+        if(!File::exists($amino_path)) \Log::info('Falha no amino');
 
-        if(!File::exists($caminho)) {
-            \Log::info('Deu merda');
-        }
+        // lidando com o cmvcol
 
-        $taco_1 = fopen($caminho, 'r');
-
-        $header = fgetcsv($taco_1, filesize($caminho), ",");
-
-        while ($row = fgetcsv($taco_1, filesize($caminho), ",")) {
-            $nota[] = array_combine($header, $row);
-        }
-
-        \Log::info($nota);
+        $cmvcol_note = $this->open_and_read($cmvcol_path);
 
         $categories = Category::get();
 
-        foreach($nota as $k => $n) {
+        foreach($cmvcol_note as $k => $n) {
 
             $cat = $categories->where('name', 'like', strtolower($n['category']))->first();
 
             $f = [
                 "name" => $n['description'],
-                "scientific_name" => "",
                 "category_id" => $cat->id
             ];
 
@@ -120,6 +129,68 @@ class ImportTACO extends Command
             ]);
         }
 
-        fclose($taco_1);
+        // lidando com o ag
+
+        $ag_note = $this->open_and_read($ag_path);
+
+        foreach ($ag_note as $k => $g) {
+
+            $ag = AG::create([
+                'variation_id' => $k + 1,
+                'saturated_g' => $this->fieldTest($g['saturated_g']),
+                'monounsaturated_g' => $this->fieldTest($g['monounsaturated_g']),
+                'polyunsaturated_g' => $this->fieldTest($g['polyunsaturated_g']),
+                '12:0_g' => $this->fieldTest($g['12:0_g']),
+                '14:0_g' => $this->fieldTest($g['14:0_g']),
+                '16:0_g' => $this->fieldTest($g['16:0_g']),
+                '18:0_g' => $this->fieldTest($g['18:0_g']),
+                '20:0_g' => $this->fieldTest($g['20:0_g']),
+                '22:0_g' => $this->fieldTest($g['22:0_g']),
+                '24:0_g' => $this->fieldTest($g['24:0_g']),
+                '14:1_g' => $this->fieldTest($g['14:1_g']),
+                '16:1_g' => $this->fieldTest($g['16:1_g']),
+                '18:1_g' => $this->fieldTest($g['18:1_g']),
+                '20:1_g' => $this->fieldTest($g['20:1_g']),
+                '18:2 n-6_g' => $this->fieldTest($g['18:2 n-6_g']),
+                '18:3 n-3_g' => $this->fieldTest($g['18:3 n-3_g']),
+                '20:4_g' => $this->fieldTest($g['20:4_g']),
+                '20:5_g' => $this->fieldTest($g['20:5_g']),
+                '22:5_g' => $this->fieldTest($g['22:5_g']),
+                '22:6_g' => $this->fieldTest($g['22:6_g']),
+                '18:1t_g' => $this->fieldTest($g['18:1t_g']),
+                '18:2t_g' => $this->fieldTest($g['18:2t_g']),
+            ]);
+
+        }
+
+        // lidando com o amino
+
+        $amino_note = $this->open_and_read($amino_path);
+
+        foreach ($amino_note as $k => $am) {
+
+            $amino = Aminoacid::create([
+                'variation_id' => $am['id'],
+                'tryptophan_g' => $this->fieldTest($am['tryptophan_g']),
+                'threonine_g' => $this->fieldTest($am['threonine_g']),
+                'isoleucine_g' => $this->fieldTest($am['isoleucine_g']),
+                'leucine_g' => $this->fieldTest($am['leucine_g']),
+                'lysine_g' => $this->fieldTest($am['lysine_g']),
+                'methionine_g' => $this->fieldTest($am['methionine_g']),
+                'cystine_g' => $this->fieldTest($am['cystine_g']),
+                'phenylalanine_g' => $this->fieldTest($am['phenylalanine_g']),
+                'tyrosine_g' => $this->fieldTest($am['tyrosine_g']),
+                'valine_g' => $this->fieldTest($am['valine_g']),
+                'arginine_g' => $this->fieldTest($am['arginine_g']),
+                'histidine_g' => $this->fieldTest($am['histidine_g']),
+                'alanine_g' => $this->fieldTest($am['alanine_g']),
+                'aspartic_g' => $this->fieldTest($am['aspartic_g']),
+                'glutamic_g' => $this->fieldTest($am['glutamic_g']),
+                'glycine_g' => $this->fieldTest($am['glycine_g']),
+                'proline_g' => $this->fieldTest($am['proline_g']),
+                'serine_g' => $this->fieldTest($am['serine_g']),
+            ]);
+
+        }
     }
 }
