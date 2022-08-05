@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Food;
 use App\Models\Category;
 
-use App\Models\Variation;
+// use App\Models\Variation;
 use App\Models\CMVCol;
 use App\Models\AG;
 use App\Models\Aminoacid;
@@ -45,16 +45,18 @@ class ImportTACO extends Command
         return $nota;
     }
 
-
     public function fieldTest ($field) {
 
         $return = null;
 
-        if (floatval($field) != 0) {
+        $lenght = strlen($field);
 
-            $replaced = str_replace(",", ".", $field);
+        $test = (float) str_replace(",", ".", $field);
 
-            $return = round(floatval($replaced), 3);
+        if ($test > 0) {
+            $ret = number_format($test, $lenght -1);
+            $ret = (float) str_replace(",", ".", $ret);
+            $return = round($ret, 4);
         }
 
         return $return;
@@ -97,13 +99,8 @@ class ImportTACO extends Command
 
             $food = Food::create($f);
 
-            $variation = Variation::create([
-                'name' => $n['description'],
-                'food_id' => $food->id
-            ]);
-
             $cmvcol = CMVCol::create([
-                'variation_id' => $variation->id,
+                'food_id' => $food->id,
                 'humidity_percents' => $this->fieldTest($n['humidity_percents']),
                 'energy_kcal' => $this->fieldTest($n['energy_kcal']),
                 'energy_kj' => $this->fieldTest($n['energy_kj']),
@@ -142,29 +139,29 @@ class ImportTACO extends Command
         foreach ($ag_note as $k => $g) {
 
             $ag = AG::create([
-                'variation_id' => $k + 1,
+                'food_id' => $g['id'],
                 'saturated_g' => $this->fieldTest($g['saturated_g']),
                 'monounsaturated_g' => $this->fieldTest($g['monounsaturated_g']),
                 'polyunsaturated_g' => $this->fieldTest($g['polyunsaturated_g']),
-                '12:0_g' => $this->fieldTest($g['12:0_g']),
-                '14:0_g' => $this->fieldTest($g['14:0_g']),
-                '16:0_g' => $this->fieldTest($g['16:0_g']),
-                '18:0_g' => $this->fieldTest($g['18:0_g']),
-                '20:0_g' => $this->fieldTest($g['20:0_g']),
-                '22:0_g' => $this->fieldTest($g['22:0_g']),
-                '24:0_g' => $this->fieldTest($g['24:0_g']),
-                '14:1_g' => $this->fieldTest($g['14:1_g']),
-                '16:1_g' => $this->fieldTest($g['16:1_g']),
-                '18:1_g' => $this->fieldTest($g['18:1_g']),
-                '20:1_g' => $this->fieldTest($g['20:1_g']),
-                '18:2 n-6_g' => $this->fieldTest($g['18:2 n-6_g']),
-                '18:3 n-3_g' => $this->fieldTest($g['18:3 n-3_g']),
-                '20:4_g' => $this->fieldTest($g['20:4_g']),
-                '20:5_g' => $this->fieldTest($g['20:5_g']),
-                '22:5_g' => $this->fieldTest($g['22:5_g']),
-                '22:6_g' => $this->fieldTest($g['22:6_g']),
-                '18:1t_g' => $this->fieldTest($g['18:1t_g']),
-                '18:2t_g' => $this->fieldTest($g['18:2t_g']),
+                'ag_12_0_g' => $this->fieldTest($g['12:0_g']),
+                'ag_14_0_g' => $this->fieldTest($g['14:0_g']),
+                'ag_16_0_g' => $this->fieldTest($g['16:0_g']),
+                'ag_18_0_g' => $this->fieldTest($g['18:0_g']),
+                'ag_20_0_g' => $this->fieldTest($g['20:0_g']),
+                'ag_22_0_g' => $this->fieldTest($g['22:0_g']),
+                'ag_24_0_g' => $this->fieldTest($g['24:0_g']),
+                'ag_14_1_g' => $this->fieldTest($g['14:1_g']),
+                'ag_16_1_g' => $this->fieldTest($g['16:1_g']),
+                'ag_18_1_g' => $this->fieldTest($g['18:1_g']),
+                'ag_20_1_g' => $this->fieldTest($g['20:1_g']),
+                'ag_18_2_n_6_g' => $this->fieldTest($g['18:2 n-6_g']),
+                'ag_18_3_n_3_g' => $this->fieldTest($g['18:3 n-3_g']),
+                'ag_20_4_g' => $this->fieldTest($g['20:4_g']),
+                'ag_20_5_g' => $this->fieldTest($g['20:5_g']),
+                'ag_22_5_g' => $this->fieldTest($g['22:5_g']),
+                'ag_22_6_g' => $this->fieldTest($g['22:6_g']),
+                'ag_18_1t_g' => $this->fieldTest($g['18:1t_g']),
+                'ag_18_2t_g' => $this->fieldTest($g['18:2t_g']),
             ]);
         }
 
@@ -177,7 +174,7 @@ class ImportTACO extends Command
         foreach ($amino_note as $k => $am) {
 
             $amino = Aminoacid::create([
-                'variation_id' => $am['id'],
+                'food_id' => $am['id'],
                 'tryptophan_g' => $this->fieldTest($am['tryptophan_g']),
                 'threonine_g' => $this->fieldTest($am['threonine_g']),
                 'isoleucine_g' => $this->fieldTest($am['isoleucine_g']),

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('aminoacids', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('variation_id')->constrained();
+            $table->foreignId('food_id')->constrained();
             $table->double('tryptophan_g', 5, 3)->nullable();
             $table->double('threonine_g', 5, 3)->nullable();
             $table->double('isoleucine_g', 5, 3)->nullable();

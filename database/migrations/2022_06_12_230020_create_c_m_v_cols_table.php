@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('c_m_v_cols', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('variation_id')->constrained();
+            $table->foreignId('food_id')->constrained();
             $table->double('humidity_percents', 8, 3)->nullable();
             $table->double('energy_kcal', 8, 3)->nullable();
             $table->double('energy_kj', 8, 3)->nullable();
