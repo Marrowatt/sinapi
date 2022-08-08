@@ -27,6 +27,7 @@ return new class extends Migration
             $table->integer('weight');
             $table->datetime('birthday');
             $table->integer('height');
+            $table->boolean('active')->default(1);
             $table->rememberToken();
             $table->timestamps();
         });

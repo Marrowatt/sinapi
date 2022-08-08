@@ -549,6 +549,272 @@
                     }
                 }
             }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "getUserList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Add a user",
+                "description": "Add a user",
+                "operationId": "addUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "birthday": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "weight": {
+                                        "type": "integer"
+                                    },
+                                    "height": {
+                                        "type": "integer"
+                                    },
+                                    "user_type": {
+                                        "type": "string"
+                                    },
+                                    "activity_level": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a user by id",
+                "description": "Returns one user",
+                "operationId": "getOneUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Updates a User",
+                "description": "Updates the values of a user",
+                "operationId": "updatesUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "birthday": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "weight": {
+                                        "type": "integer"
+                                    },
+                                    "height": {
+                                        "type": "integer"
+                                    },
+                                    "user_type": {
+                                        "type": "string"
+                                    },
+                                    "activity_level": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}/changestatus": {
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Updates the status from an User",
+                "description": "Updates the status from an user",
+                "operationId": "updatesUserStatus",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }

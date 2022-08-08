@@ -9,6 +9,7 @@ use App\Http\Controllers\ActivityLevelController;
 use App\Http\Controllers\AGController;
 use App\Http\Controllers\CMVColController;
 use App\Http\Controllers\AminoacidController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,5 +43,12 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::apiResource('/cmvcol', CMVColController::class)->except(['destroy']);
 
     Route::apiResource('/aminoacid', AminoacidController::class)->except(['destroy']);
+
+    Route::apiResource('/user', UserController::class)->except(['destroy']);
+
+    Route::prefix('user')->group(function () {
+        Route::patch('/{user}/changestatus', [UserController::class, 'changestatus'])->name('user_changestatus');
+    });
+
 });
 

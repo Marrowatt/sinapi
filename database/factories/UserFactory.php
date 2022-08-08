@@ -27,7 +27,7 @@ class UserFactory extends Factory
             'phone' => '55' + strval(rand(911111111, 999999999)),
             'user_type_id' => rand(1, 2),
             'gender_id' => rand(1, 2),
-            'activity_level_id' => rand(1, 4),
+            'activity_level_id' => rand(1, 5),
             'weight' => rand(6500, 12000),
             'height' => rand(165, 199),
             'birthday' => $this->faker->dateTime(),

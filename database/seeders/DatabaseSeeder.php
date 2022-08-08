@@ -33,7 +33,7 @@ class DatabaseSeeder extends Seeder
 
         // Activity Levels
 
-        $activity_levels = ["Sedentário", "Levemente Ativo", "Ativo", "Muito Ativo"];
+        $activity_levels = ["Sedentário", "Leve", "Moderado", "Intenso", "Muito Intenso"];
 
         foreach ($activity_levels as $al) {
             \App\Models\ActivityLevel::create(['name' => $al]);
