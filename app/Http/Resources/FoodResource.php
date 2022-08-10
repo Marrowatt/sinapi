@@ -17,10 +17,12 @@ class FoodResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "quantity" => "00000",
             "category" => new CategoryResource($this->whenLoaded('category')),
             "cmvcol" => new CMVColResource($this->whenLoaded('cmvcol')),
             "aminoacid" => new AminoacidResource($this->whenLoaded('aminoacid')),
             "ag" => new AGResource($this->whenLoaded('ag')),
+            "kcal" => $this->cmvcol->energy_kcal,
         ];
     }
 }

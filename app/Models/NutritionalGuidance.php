@@ -10,4 +10,8 @@ class NutritionalGuidance extends Model
     use HasFactory;
 
     protected $fillable = ['nutritionist_id', 'user_id'];
+
+    public function meals () {
+        return $this->hasMany(Meal::class);
+    }
 }

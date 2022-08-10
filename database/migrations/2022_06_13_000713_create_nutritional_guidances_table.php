@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('nutritional_guidances', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('nutritionist_id')->constrained('users')->nullable();
+            $table->foreignId('nutritionist_id')->nullable()->constrained('users');
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });

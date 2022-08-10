@@ -550,6 +550,263 @@
                 }
             }
         },
+        "/api/meal/{id}": {
+            "get": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Get a meal by id",
+                "description": "Returns one meal",
+                "operationId": "getOneMeal",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates a Meal",
+                "description": "Updates the values of a meal",
+                "operationId": "updatesMeal",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user": {
+                                        "type": "integer"
+                                    },
+                                    "hour": {
+                                        "type": "string"
+                                    },
+                                    "nickname": {
+                                        "type": "string"
+                                    },
+                                    "foods": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "food": {
+                                                    "type": "string"
+                                                },
+                                                "quantity": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal": {
+            "post": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Add a meal",
+                "description": "Add a meal",
+                "operationId": "addMeal",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user": {
+                                        "type": "integer"
+                                    },
+                                    "hour": {
+                                        "type": "string"
+                                    },
+                                    "nickname": {
+                                        "type": "string"
+                                    },
+                                    "foods": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "food": {
+                                                    "type": "string"
+                                                },
+                                                "quantity": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal/{id}/changestatus": {
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates the status from an Meal",
+                "description": "Updates the status from an meal",
+                "operationId": "updatesMealStatus",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal/{id}/notify": {
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates the notifiable from an Meal",
+                "description": "Updates the notifiable from an meal",
+                "operationId": "updatesMealNotify",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/user": {
             "get": {
                 "tags": [
@@ -789,6 +1046,46 @@
                         "name": "api_token",
                         "in": "query",
                         "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}/wishlist": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a wishlist by user",
+                "description": "Returns a wishlist by user",
+                "operationId": "getWishlistByUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
                         "required": true,
                         "schema": {
                             "type": "string"

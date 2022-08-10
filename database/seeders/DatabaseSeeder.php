@@ -59,8 +59,14 @@ class DatabaseSeeder extends Seeder
             'height' => rand(165, 199),
             'birthday' => '1980-07-31',
         ]);
-        
-        // \App\Models\User::factory(10)->create();
+
+        $users = \App\Models\User::get();
+        $user_type_nutri = \App\Models\UserType::where('name', 'Nutritionist')->first();
+        $nutri = \App\Models\User::where('user_type_id', $user_type_nutri->id)->first();
+
+        foreach ($users as $u) {
+            \App\Models\NutritionalGuidance::create(['nutritionist_id' => $nutri->id, 'user_id' => $u->id]);
+        }
         
         $categories = ["Cereais e Derivados", "Verduras, Hortaliças e Derivados", 
             "Frutas e Derivados", "Gorduras e óleos", "Pescados e Frutos do Mar", 

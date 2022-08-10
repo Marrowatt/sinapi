@@ -16,11 +16,14 @@ use App\Models\Gender;
 use App\Models\ActivityLevel;
 use App\Models\UserType;
 
+use App\Models\Wishlist;
+use App\Http\Resources\WishlistResource;
+
 use Illuminate\Support\Str;
 
 class UserController extends Controller
 {
-     /**
+    /**
      * Display a listing of the resource.
      **
      * @return \Illuminate\Http\Response
@@ -316,5 +319,53 @@ class UserController extends Controller
         ]);
 
         return response()->json(new UserResource($user->load('activity_level')), 200);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Get(
+     *      path="/api/user/{id}/wishlist",
+     *      operationId="getWishlistByUser",
+     *      tags={"User"},
+     *      summary="Get a wishlist by user",
+     *      description="Returns a wishlist by user",
+     *      @OA\Parameter(
+     *          name="api_token",
+     *          description="API Token",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       )
+     *     )
+     */
+    
+    public function wishlist (ApiRequest $request, User $user) {
+
+        $wish = Wishlist::with('food')->where('user_id', $user->id);
+
+        $return = WishlistResource::collection($wish->get());
+
+        return response()->json($return, 200);
     }
 }

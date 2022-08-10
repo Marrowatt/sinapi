@@ -53,6 +53,14 @@ class User extends Authenticatable
         return $this->belongsTo(Gender::class);
     }
 
+    public function wishlist () {
+        return $this->hasMany(Wishlist::class);
+    }
+
+    public function nutritional_guidance () {
+        return $this->hasOne(NutritionalGuidance::class);
+    }
+
     // IMC (kg/m²)
     public function bmi () {
 

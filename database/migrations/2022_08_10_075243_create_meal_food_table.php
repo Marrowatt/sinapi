@@ -13,11 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('variations', function (Blueprint $table) {
+        Schema::create('meal_food', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            
+            $table->foreignId('meal_id')->constrained();
             $table->foreignId('food_id')->constrained();
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('variations');
+        Schema::dropIfExists('meal_food');
     }
 };

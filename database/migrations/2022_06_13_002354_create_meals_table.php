@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('meals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('nutritional_guidance_id')->constrained();
-            $table->foreignId('food_id')->constrained();
-            $table->integer('quantity');
             $table->time('hour');
             $table->string('nickname');
+            $table->boolean('active')->default(1);
+            $table->boolean('notifiable')->default(1);
             $table->timestamps();
         });
     }

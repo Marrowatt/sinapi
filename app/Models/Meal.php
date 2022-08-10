@@ -9,5 +9,9 @@ class Meal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nutritional_guidance_id', 'food_id', 'quantity', 'hour', 'nickname'];
+    protected $fillable = ['nutritional_guidance_id', 'hour', 'nickname', 'active', 'notifiable'];
+
+    public function meal_food () {
+        return $this->hasMany(MealFood::class);
+    }
 }
