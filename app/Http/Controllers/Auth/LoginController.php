@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use Illuminate\Http\Requests;
+
 class LoginController extends Controller
 {
     /*
@@ -27,6 +29,15 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+    protected function redirectTo () {
+        if (auth()->user()->user_type_id == 1) {
+            return route('regular.dashboard');
+        } elseif (auth()->user()->user_type_id == 2) {
+            return route('nutri.dashboard');
+        } elseif (auth()->user()->user_type_id == 3) {
+            return route('admin.dashboard');
+        }
+    }
 
     /**
      * Create a new controller instance.
