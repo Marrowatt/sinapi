@@ -32,22 +32,12 @@ Vue.use(VueRouter);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);
 
-import jorge from './components/ExampleComponent.vue';
-
-const routes = [
-    { path: '/', component: jorge},
-    // { path: '/beeinsert', name: 'beeinsert', component: beeinsert},
-    // { path: '/flowerinsert', name: 'flowerinsert', component: flowerinsert}
-];
-
-const router = new VueRouter({
-    routes
-});
+// import jorge from './components/ExampleComponent.vue';
 
 import Donut from 'vue-css-donut-chart';
 import 'vue-css-donut-chart/dist/vcdonut.css';
@@ -57,6 +47,7 @@ Vue.use(Donut);
 
 const app = new Vue({
     el: '#app',
-    router: router,
-    axios: axios,
+    components: {
+
+    }
 });
