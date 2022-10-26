@@ -807,6 +807,46 @@
                 }
             }
         },
+        "/api/meal/{id}/done": {
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates the done status from a Meal",
+                "description": "Updates the done status from a meal",
+                "operationId": "updatesMealDone",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/api/user": {
             "get": {
                 "tags": [

@@ -1,0 +1,80 @@
+<template>
+<div class="modal fade bd-example-modal-md" id="mealcreate" tabindex="-1" role="dialog" aria-labelledby="teste" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <div class="container-fluid">
+                <div class="float-right p-3">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar"><i class="fas fa-window-close text-danger"></i></button>
+                </div>
+                <div class="col-12 mx-auto">
+                    <h4 class="mt-3">Refeição</h4>
+
+                    <div class="form-group">
+                        <label for="name"> Nome: <span class="text-danger">*</span> </label>
+                        <input class="form-control" type="text" name="name" id="name" v-model="meal.nickname" required>                        
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name"> Hora: <span class="text-danger">*</span> </label>
+                        <input class="form-control" type="time" name="hour" id="hour" v-model="meal.hour" required>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-10" v-for="(f, i) in meal.foods" :key="i">
+                            <div class="row mt-2">
+                                <div class="col-6">
+                                    <label for="food"> Alimento: <span class="text-danger">*</span> </label>
+                                    <input class="form-control" type="text" name="food" id="food" v-model="f.food" required>
+                                </div>
+                                <div class="col-4">
+                                    <label for="quantity"> Quantidade: <span class="text-danger">*</span> </label>
+                                    <input class="form-control" type="number" name="quantity" id="quantity" v-model="f.quantity" required>
+                                </div>
+                                <div class="col-2 text-center mt-4">
+                                    <button class="btn btn-info btn-sm btn-block rounded py-2 mt-2" @click="subFood(i)"> <i class="fa fa-minus"></i> </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-2 mt-2">
+                            <button class="btn btn-primary btn-sm btn-block rounded py-2" @click="addFood"> <i class="fa fa-plus"></i> </button>
+                        </div>
+                    </div>
+
+                    <div class="col-10 mx-auto">
+                        <button class="btn btn-block btn-primary mt-4 mb-3" data-dismiss="modal" aria-label="Fechar" @click="sendToUp">Salvar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</template>
+
+<script>
+    export default {
+        data () {
+            return {
+                meal: {
+                    nickname: '',
+                    hour: '',
+                    foods: [{
+                        food: '',
+                        quantity: 0
+                    }]
+                }
+            }
+        },
+        methods: {
+            sendToUp () {
+                this.$emit('creating', { meal: this.meal });
+            },
+            addFood () {
+                this.meal.foods.push({food: "", quantity: 0});
+            },
+            subFood (ind) {
+                this.meal.foods.splice(ind, 1);
+            }
+        }
+    }
+</script>

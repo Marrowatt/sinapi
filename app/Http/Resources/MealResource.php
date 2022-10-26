@@ -22,7 +22,8 @@ class MealResource extends JsonResource
             'nickname' => $this->nickname,
             'meal_food' => MealFoodResource::collection($this->meal_food),
             'active' => $this->active,
-            'notifiable' => $this->notifiable
+            'notifiable' => $this->notifiable,
+            'done' => $this->done
         ];
     }
 }

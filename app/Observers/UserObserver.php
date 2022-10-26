@@ -3,15 +3,14 @@
 namespace App\Observers;
 
 use App\Models\NutritionalGuidance;
+use App\Models\User;
 
 class UserObserver
 {
-    public function created () {
-
-        \Log::info("eeeeeeeeeeeeeeeeeeeeeeee");
+    public function created (User $user) {
 
         NutritionalGuidance::create([
-            "user_id" => $this->id,
+            "user_id" => $user->id,
         ]);
     }
 }

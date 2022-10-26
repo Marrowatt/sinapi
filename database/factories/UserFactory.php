@@ -30,7 +30,7 @@ class UserFactory extends Factory
             'activity_level_id' => rand(1, 5),
             'weight' => rand(6500, 12000),
             'height' => rand(165, 199),
-            'birthday' => $this->faker->dateTime(),
+            'birthday' => $this->faker->dateTimeBetween('1950-01-01', '2012-12-31')->format('Y-m-d'),
         ];
     }
 

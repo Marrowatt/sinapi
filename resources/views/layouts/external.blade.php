@@ -11,6 +11,7 @@
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     </head>
     <body>
         <!-- Navigation-->
@@ -71,16 +72,16 @@
                     </div>
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <i class="fa fa-table fa-3x mb-3"></i>
-                            <h3>Tabela TACO</h3>
-                            <p class="lead mb-0">Alimentos com os valores atualizados de acordo com a Tabela TACO</p>
+                            <i class="fa fa-edit fa-3x mb-3"></i>
+                            <h3>Personalize sua dieta</h3>
+                            <p class="lead mb-0">E favorite seus alimentos</p>
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
-                            <i class="fa fa-table fa-3x mb-3"></i>
-                            <h3>Tabela TACO</h3>
-                            <p class="lead mb-0">Alimentos com os valores atualizados de acordo com a Tabela TACO</p>
+                            <i class="fa fa-plus fa-3x mb-3"></i>
+                            <h3>Quer mais?</h3>
+                            <p class="lead mb-0">Faça o cadastro e tenha acesso a mais recursos</p>
                         </div>
                     </div>
                 </div>

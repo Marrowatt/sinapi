@@ -32,6 +32,8 @@ Route::group(['prefix' => 'nutritionist', 'middleware' => ['isNutritionist', 'au
 Route::group(['prefix' => 'regular', 'middleware' => ['isRegular', 'auth']], function () {
     Route::get('dashboard', [RegularController::class, 'index'])->name('regular.dashboard');
     Route::get('profile', [RegularController::class, 'profile'])->name('regular.profile');
+    Route::put('profile/{user}', [RegularController::class, 'profile_update'])->name('regular.profile.update');
+    Route::put('profile-password', [RegularController::class, 'profile_password_update'])->name('regular.profile.password');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth']], function () {

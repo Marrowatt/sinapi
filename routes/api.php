@@ -58,6 +58,7 @@ Route::group(['middleware' => ['auth:api']], function() {
     Route::prefix('meal')->group(function () {
         Route::patch('/{meal}/changestatus', [MealController::class, 'changestatus'])->name('meal_changestatus');
         Route::patch('/{meal}/notify', [MealController::class, 'notify'])->name('meal_notify');
+        Route::patch('/{meal}/done', [MealController::class, 'done'])->name('meal_done');
     });
 });
 

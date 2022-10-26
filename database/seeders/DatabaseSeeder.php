@@ -65,7 +65,7 @@ class DatabaseSeeder extends Seeder
         $nutri = \App\Models\User::where('user_type_id', $user_type_nutri->id)->first();
 
         foreach ($users as $u) {
-            \App\Models\NutritionalGuidance::create(['nutritionist_id' => $nutri->id, 'user_id' => $u->id]);
+            $u->nutritional_guidance->update(['nutritionist_id' => $nutri->id]);
         }
         
         $categories = ["Cereais e Derivados", "Verduras, Hortaliças e Derivados", 

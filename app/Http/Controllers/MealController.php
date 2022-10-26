@@ -110,6 +110,8 @@ class MealController extends Controller
 
     public function store (MealStoreRequest $request) {
 
+        \Log::info("chegou no store?");
+
         $user = User::find($request->user);
 
         $meal_data = [
@@ -307,4 +309,52 @@ class MealController extends Controller
         return response()->json(new MealResource($meal->load('meal_food')), 200);
     }
 
+    /**
+     * Update the done status from a specified resource in storage.
+     *
+     * @param  \Illuminate\Http\ApiRequest  $request
+     * @param  \App\Models\Meal  $meal
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Patch(
+     *      path="/api/meal/{id}/done",
+     *      operationId="updatesMealDone",
+     *      tags={"Meal"},
+     *      summary="Updates the done status from a Meal",
+     *      description="Updates the done status from a meal",
+     *      @OA\Parameter(
+     *          name="api_token",
+     *          description="Api Token",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Meal id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       )
+     *     )
+     */
+    
+    public function done (ApiRequest $request, Meal $meal) {
+
+        $meal->update([
+            "done" => $meal->done ? 0 : 1
+        ]);
+
+        return response()->json(new MealResource($meal->load('meal_food')), 200);
+    }
 }

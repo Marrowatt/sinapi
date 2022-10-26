@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('nickname');
             $table->boolean('active')->default(1);
             $table->boolean('notifiable')->default(1);
+            $table->boolean('done')->default(0);
             $table->timestamps();
         });
     }
