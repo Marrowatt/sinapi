@@ -31,6 +31,7 @@ class UserFactory extends Factory
             'weight' => rand(6500, 12000),
             'height' => rand(165, 199),
             'birthday' => $this->faker->dateTimeBetween('1950-01-01', '2012-12-31')->format('Y-m-d'),
+            'formula_id' => rand(1, 3)
         ];
     }
 

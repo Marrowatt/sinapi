@@ -28,6 +28,7 @@ return new class extends Migration
             $table->date('birthday')->nullable();
             $table->integer('height')->nullable();
             $table->boolean('active')->default(1);
+            $table->foreignId('formula_id')->nullable()->constrained();
             $table->rememberToken();
             $table->timestamps();
         });

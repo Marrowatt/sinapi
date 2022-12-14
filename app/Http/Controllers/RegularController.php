@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 
 use App\Models\ActivityLevel;
 use App\Models\Gender;
-
+use App\Models\Formula;
 use App\Models\User;
+
 use App\Http\Requests\RegularUpdateRequest;
 
 use App\Http\Requests\ApiRequest;
@@ -22,8 +23,9 @@ class RegularController extends Controller
     public function profile () {
         $activities = ActivityLevel::select('id', 'name')->get();
         $genders = Gender::select('id', 'name')->get();
+        $formulas = Formula::select('id', 'name')->get();
 
-        return view('regular.profile.view', compact('activities', 'genders'));
+        return view('regular.profile.view', compact('activities', 'genders', 'formulas'));
     }
 
     public function profile_update (Request $request, User $user) {
@@ -48,6 +50,10 @@ class RegularController extends Controller
 
         if($request->has('activity_level_id')) {
             $user->activity_level_id = ActivityLevel::find($request->activity_level_id)->id;
+        }
+
+        if($request->has('formula_id')) {
+            $user->formula_id = Formula::find($request->formula_id)->id;
         }
 
         $user->save();

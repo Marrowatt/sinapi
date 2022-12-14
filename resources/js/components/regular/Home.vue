@@ -15,8 +15,8 @@
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col pr-4">
-                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> Calorias </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">0 / 0 kcal </div>
+                                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> Calorias ({{ regular.formula }}) </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"> 0 / {{ regular.bmr }} kcal </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-balance-scale fa-2x text-gray-300"></i>
@@ -34,17 +34,17 @@
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-2"> Macronutrientes </div>
                                 <div class="row">
                                     <div class="col-3 mx-auto text-center">
-                                        <div class="rounded-circle border border-danger py-3"> 0 g </div>
-                                        <p class="text-xs font-weight-bold mt-2"> Carboidratos </p>                                                     
+                                        <div class="rounded-circle border border-danger py-3"> {{ regular.predicts.ideal_macro.carb }} g </div>
+                                        <p class="text-xs font-weight-bold mt-2"> Carboidrato </p>                                                     
                                     </div>
                                     
                                     <div class="col-3 mx-auto text-center">
-                                        <div class="rounded-circle border border-info py-3"> 0 g </div>
+                                        <div class="rounded-circle border border-info py-3"> {{ regular.predicts.ideal_macro.gord }} g </div>
                                         <p class="text-xs font-weight-bold mt-2"> Gordura </p>                                                     
                                     </div>
                                     
                                     <div class="col-3 mx-auto text-center">
-                                        <div class="rounded-circle border border-secondary py-3"> 0 g </div>
+                                        <div class="rounded-circle border border-secondary py-3"> {{ regular.predicts.ideal_macro.prot }} g </div>
                                         <p class="text-xs font-weight-bold mt-2"> Proteína </p>                                                     
                                     </div>
                                 </div>
@@ -60,7 +60,7 @@
                         <div class="row align-items-center">
                             <div class="col pr-2">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> Consumo Hídrico </div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800"> 0 / 0 ml </div>
+                                <div class="h5 mb-0 font-weight-bold text-gray-800"> 0 / {{ regular.predicts.ideal_water_consumption }} l </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-water fa-2x text-gray-300"></i>
@@ -129,6 +129,7 @@
     export default {
         props: {
             token: String,
+            id: String,
         },
         data () {
             return {
@@ -136,10 +137,12 @@
                 errors: null,
                 load: true,
                 meals: [],
+                regular: {}
             }
         },
         mounted() {
             // console.log('Component mounted.');
+            this.getRegular();
         },
         methods: {
             // getMeals () {
@@ -151,6 +154,11 @@
             toNull () {
                 this.message = null;
                 this.errors = null;
+            },
+            getRegular () {
+                axios.get('/api/user/'+this.id+'?api_token='+this.token).then(data => {
+                    this.regular = data.data;
+                });
             },
             create (payload) {
                 this.toNull();

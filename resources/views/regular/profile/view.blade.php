@@ -110,6 +110,21 @@
                                     {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
                             </div>
+                            <div class="col-12 col-md-6 pr-1">
+                                <div class="form-group">
+                                    <label for="height">Fórmula utilizada:</label>
+
+                                    <select name="formula_id" id="formula_id" class="form-control">
+                                        @foreach ($formulas as $form)
+                                            @if($form->id == auth()->user()->formula_id)
+                                                <option selected value="{{ $form->id }}"> {{ $form->name }}</option>
+                                            @else
+                                                <option value="{{ $form->id }}"> {{ $form->name }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="col-10 mx-auto">

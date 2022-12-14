@@ -14,6 +14,10 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
+        $bmr = $this->bmr_harris_benedict();
+        if($this->formula_id == 2) $bmr = $this->bmr_mifflin_st_jeor();
+        if($this->formula_id == 3) $bmr = $this->bmr_fao_oms();
+
         return [
             "id" => $this->id,
             "name" => $this->name,
@@ -24,13 +28,16 @@ class UserResource extends JsonResource
             "height" => $this->height,
             "birthday" => $this->birthday,
             "active" => $this->active ? "Yes" : "No",
+            "formula" => $this->formula->name,
+            "bmr" => $bmr,
             "predicts" => [
-                "BMR Harris-Benedict" => $this->bmr_harris_benedict(),
-                "BMR Mifflin St-Jeor" => $this->bmr_mifflin_st_jeor(),
-                "BMR FAO/OMS" => $this->bmr_fao_oms(),
-                "Ideal Fat Percentage" => $this->ideal_fat_percentage(),
-                "Ideal Water Consumption" => $this->ideal_water_consumption(),
-                "BMI" => $this->bmi(),
+                "bmr_harris_benedict" => $this->bmr_harris_benedict(),
+                "bmr_mifflin_st_jeor" => $this->bmr_mifflin_st_jeor(),
+                "bmr_fao_oms" => $this->bmr_fao_oms(),
+                "ideal_fat_percentage" => $this->ideal_fat_percentage(),
+                "ideal_water_consumption" => $this->ideal_water_consumption(),
+                "bmi" => $this->bmi(),
+                "ideal_macro" => $this->ideal_macro()
             ]
         ];
     }

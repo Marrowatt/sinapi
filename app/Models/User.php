@@ -61,6 +61,10 @@ class User extends Authenticatable
         return $this->hasOne(NutritionalGuidance::class);
     }
 
+    public function formula () {
+        return $this->belongsTo(Formula::class);
+    }
+
     // IMC (kg/m²)
     public function bmi () {
 
@@ -75,11 +79,11 @@ class User extends Authenticatable
     public function bmr_harris_benedict () {
 
         $weight = $this->weight / 100;
-        $height = $this->height / 100;
+        $height = $this->height;
         $age = Carbon::now()->diffInYears($this->birthday);
         
         if ($this->gender->name == "Masculino") {
-            $return = 66 + (13.8 * $weight) + (5.0 * $height) - (6.8 * $age);
+            $return = 66.5 + (13.8 * $weight) + (5.0 * $height) - (6.8 * $age);
             return round($return, 3);
         } else {
             $return = 655 + (9.6 * $weight) + (1.9 * $height) - (4.7 * $age);
@@ -163,5 +167,24 @@ class User extends Authenticatable
         $return = $weight * 35 / 1000;
 
         return round($return, 3);
+    }
+
+    // Macronutrientes ideais
+    public function ideal_macro () {
+
+        // 40 % prot e carbo; 20 % gord;
+        // 4 kcal / g - prot e carbo; 9 kcal / g - gord
+
+        $bmr = $this->bmr_harris_benedict();
+        if($this->formula_id == 2) $bmr = $this->bmr_mifflin_st_jeor();
+        if($this->formula_id == 3) $bmr = $this->bmr_fao_oms();
+
+        $return = [
+            "carb" => round(($bmr * 0.4) / 4, 2),
+            "prot" => round(($bmr * 0.4) / 4, 2),
+            "gord" => round(($bmr * 0.2) / 9, 2),
+        ];
+
+        return $return;
     }
 }

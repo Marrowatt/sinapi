@@ -1,7 +1,7 @@
 @extends('layouts.regular')
 
 @section('content')
-<regular-home token="{{ auth()->user()->api_token }}"></regular-home>
+<regular-home token="{{ auth()->user()->api_token }}" id="{{ auth()->user()->id }}"></regular-home>
 @endsection
 
 @section('scripts')

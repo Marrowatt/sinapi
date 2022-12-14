@@ -39,6 +39,14 @@ class DatabaseSeeder extends Seeder
             \App\Models\ActivityLevel::create(['name' => $al]);
         }
 
+        // Activity Levels
+
+        $formulas = ["Harris-Benedict", "Mifflin St-Jeor", "FAO/OMS"];
+
+        foreach ($formulas as $f) {
+            \App\Models\Formula::create(['name' => $f]);
+        }
+
         // Users
         \App\Models\User::factory(10)->create();
 
@@ -58,6 +66,7 @@ class DatabaseSeeder extends Seeder
             'weight' => rand(6500, 12000),
             'height' => rand(165, 199),
             'birthday' => '1980-07-31',
+            'formula_id' => rand(1, 3)
         ]);
 
         $users = \App\Models\User::get();
