@@ -112,4 +112,18 @@ class FoodController extends Controller
 
         return response()->json($return, 200);
     }
+
+    public function getFood () {
+
+        $foods = FoodResource::collection(Food::get());
+
+        return response()->json($foods, 200);
+    }
+
+    public function getOneFood ($id) {
+
+        $food = Food::with('category', 'ag', 'aminoacid', 'cmvcol')->find($id);
+
+        return response()->json($food, 200);
+    }
 }

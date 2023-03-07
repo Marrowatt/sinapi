@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NutritionistController;
 use App\Http\Controllers\RegularController;
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\FoodController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,3 +41,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth']], functio
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
+
+Route::get('getFood', [FoodController::class, 'getFood'])->name('getFood');
+
+Route::get('getOneFood/{id}', [FoodController::class, 'getOneFood'])->name('getOneFood');

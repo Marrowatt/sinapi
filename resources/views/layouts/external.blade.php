@@ -38,21 +38,11 @@
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
-                        <div class="text-center text-white">
+                        <div class="text-center text-white" id="app">
                             
                             <h1 class="mb-5">Encontre informações sobre uma alimentação saudável</h1>
 
-                            <form class="" id="foodSearch">
-                                
-                                <div class="row">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="food" type="text" placeholder="Arroz, tipo 1..." data-sb-validations="required" />
-                                        <div class="invalid-feedback text-white" data-sb-feedback="food:required">Um alimento é requerido.</div>
-                                    </div>
-                                    <div class="col-auto"><button class="btn btn-success btn-lg" id="submitButton" type="submit"> <i class="fa fa-search"></i> </button></div>
-                                </div>
-                                
-                            </form>
+                            <food-search></food-search>
                         </div>
                     </div>
                 </div>

@@ -30,6 +30,8 @@ Vue.use(IconsPlugin)
 // Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('regular-home', require('./components/regular/Home.vue').default);
 Vue.component('create-meal', require('./components/meal/CreateMeal.vue').default);
+Vue.component('food-search', require('./components/FoodSearch.vue').default);
+Vue.component('sifu', require('./components/Sifu.vue').default);
 
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);

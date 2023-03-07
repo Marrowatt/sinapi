@@ -73,9 +73,9 @@ class ImportTACO extends Command
 
         // $this->call('cache:clear');
 
-        $cmvcol_path = "/var/www/html/storage/app/public/csvs/cmvcol.csv";
-        $ag_path = "/var/www/html/storage/app/public/csvs/ag.csv";
-        $amino_path = "/var/www/html/storage/app/public/csvs/amino.csv";
+        $cmvcol_path = "storage/app/public/csvs/cmvcol.csv";
+        $ag_path = "storage/app/public/csvs/ag.csv";
+        $amino_path = "storage/app/public/csvs/amino.csv";
 
         if(!File::exists($cmvcol_path)) \Log::info('Falha no cmvcol');
         if(!File::exists($ag_path)) \Log::info('Falha no ag');
