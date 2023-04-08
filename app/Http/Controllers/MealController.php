@@ -109,9 +109,7 @@ class MealController extends Controller
      */
 
     public function store (MealStoreRequest $request) {
-
-        \Log::info("chegou no store?");
-
+        
         $user = User::find($request->user);
 
         $meal_data = [

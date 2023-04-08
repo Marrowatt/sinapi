@@ -16,10 +16,8 @@ class MealFoodResource extends JsonResource
      */
     public function toArray($request)
     {
-        
-
         return [
-            "food" => new FoodResource($this->food->first()),
+            "food" => new FoodResource($this->food),
             'quantity' => $this->quantity
         ];
     }

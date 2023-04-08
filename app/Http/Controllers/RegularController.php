@@ -13,6 +13,8 @@ use App\Http\Requests\RegularUpdateRequest;
 
 use App\Http\Requests\ApiRequest;
 
+use App\Http\Resources\MealResource;
+
 class RegularController extends Controller
 {
     public function index()
@@ -64,5 +66,60 @@ class RegularController extends Controller
     
     public function profile_password_update () {
         
+    }
+
+    
+    /**
+     * Display a listing of the resource.
+     **
+     * @return \Illuminate\Http\Response
+     */
+    /**
+     * @OA\Get(
+     *      path="/api/regular/{id}/meal",
+     *      operationId="getUserMealList",
+     *      tags={"RegularUser"},
+     *      summary="Get list of meals from an user",
+     *      description="Returns list of of meals from an user",
+     *      @OA\Parameter(
+     *          name="api_token",
+     *          description="API Token",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="User id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="paginate",
+     *          description="Number of customers per page",
+     *          required=false,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       )
+     *     )
+     */
+    
+     public function regularMeals (ApiRequest $request, User $user) {
+
+        $return = MealResource::collection($user->nutritional_guidance->meals);
+
+        return response()->json($return, 200);
     }
 }

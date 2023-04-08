@@ -1,11 +1,8 @@
 <template>
     <div class="container-fluid">
-
-        <!-- Page Heading -->
+        
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
-            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
         </div>
         
         <div class="row">
@@ -32,7 +29,7 @@
                         <div class="row align-items-center">
                             <div class="col pr-2">
                                 <div class="text-xs font-weight-bold text-success text-uppercase mb-2"> Macronutrientes </div>
-                                <div class="row">
+                                <div class="row" v-if="regular.predicts">
                                     <div class="col-3 mx-auto text-center">
                                         <div class="rounded-circle border border-danger py-3"> {{ regular.predicts.ideal_macro.carb }} g </div>
                                         <p class="text-xs font-weight-bold mt-2"> Carboidrato </p>                                                     
@@ -58,7 +55,7 @@
                 <div class="card border-left-info shadow h-100 pt-2">
                     <div class="card-body">
                         <div class="row align-items-center">
-                            <div class="col pr-2">
+                            <div class="col pr-2" v-if="regular.predicts">
                                 <div class="text-xs font-weight-bold text-primary text-uppercase mb-1"> Consumo Hídrico </div>
                                 <div class="h5 mb-0 font-weight-bold text-gray-800"> 0 / {{ regular.predicts.ideal_water_consumption }} l </div>
                             </div>
@@ -75,19 +72,17 @@
         
         <div class="d-sm-flex align-items-center justify-content-between mb-4">
             <h1 class="h3 mb-0 text-gray-800">Refeições</h1>
-            <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
-                    class="fas fa-download fa-sm text-white-50"></i> Generate Report</a> -->
         </div>
 
-        <div class="row">
+        <div class="row" v-if="load">
 
-            <!-- <div class="col-xl-3 col-md-6 mb-4" data-toggle="seeMeal">
+            <div class="col-xl-3 col-md-6 mb-4" data-toggle="seeMeal" v-for="(m, i) in meals" :key="i">
                 <div class="card border-left-primary shadow h-100 pt-2">
                     <div class="card-body">
                         <div class="row align-items-center">
                             <div class="col pr-4">
-                                <div class="font-weight-bold text-secondary text-uppercase mb-1"> Café da Manhã </div>
-                                <div class="h6 mb-0 font-weight-bold text-gray-800"> 10:00 </div>
+                                <div class="font-weight-bold text-secondary text-uppercase mb-1"> {{ m.nickname }} </div>
+                                <div class="h6 mb-0 font-weight-bold text-gray-800"> {{ m.hour }} </div>
                             </div>
                             <div class="col-auto">
                                 <i class="fas fa-eye fa-2x text-gray-300"></i>
@@ -95,7 +90,7 @@
                         </div>
                     </div>
                 </div>
-            </div> -->
+            </div>
 
             <div class="col-xl-3 col-md-6 mb-4">
                 <div class="card border-left-info shadow h-100 pt-2">
@@ -103,11 +98,6 @@
                         <div class="row align-items-center">
                             <div class="col pr-2">
                                 <div class="font-weight-bold text-info text-uppercase mb-1"> Adicionar Refeição </div>
-                                <div class="row no-gutters align-items-center">
-                                    <!-- <div class="col-auto">
-                                        <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"> 750 / 2600 ml </div>
-                                    </div> -->
-                                </div>
                             </div>
                             <div class="col-auto">
                                 <button class="btn btn-light rounded-circle border border-success px-2 py-1" data-toggle="modal" data-target="#mealcreate">
@@ -118,10 +108,9 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
-        <create-meal @creating="create"></create-meal>
+        <create-meal :comidas=foods @creating="create" v-if="foods"></create-meal>
     </div>
 </template>
 
@@ -135,22 +124,24 @@
             return {
                 message: null,
                 errors: null,
-                load: true,
+                load: false,
                 meals: [],
-                regular: {}
+                regular: {},
+                foods: []
             }
         },
         mounted() {
-            // console.log('Component mounted.');
             this.getRegular();
+            this.getFoods();
+            this.getUserMeals();
         },
         methods: {
-            // getMeals () {
-            //     axios.get('/api/meal?api_token='+this.token).then(data => {
-            //         this.meals = data.data;
-            //         this.load = false;
-            //     });
-            // },
+            getUserMeals () {
+                axios.get('/api/regular/'+this.id+'/meal?api_token='+this.token).then(data => {
+                    this.meals = data.data;
+                    this.load = true;
+                });
+            },
             toNull () {
                 this.message = null;
                 this.errors = null;
@@ -160,18 +151,22 @@
                     this.regular = data.data;
                 });
             },
+            getFoods () {
+                axios.get('/getFood').then(data => {
+                    this.foods = data.data;
+                });
+            },
             create (payload) {
                 this.toNull();
+                payload.meal.user = this.regular.id;
+                
                 axios.post('/api/meal?api_token='+this.token, payload.meal).then(data => {
                     this.message = "Refeição criada!";
-                    alert('foi?')
-                    // this.getMeals();
+                    this.getUserMeals();
                 }).catch(error => {
                     if (error.response.status == 422) this.errors = error.response.data;
                     if (error.response.status == 500) this.errors = {Erro: {message: "Erro! Tente novamente mais tarde."}};
-                    // this.getMeals();
-                    console.log(this.errors);
-                    alert('não ne')
+                    this.getMeals();
                 });
             },
         }

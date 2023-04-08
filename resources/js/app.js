@@ -44,8 +44,5 @@ Vue.use(Donut);
 const app = new Vue({
     el: '#app',
     components: {
-        // brands,
-        // solid,
-        // fontawesome
     }
 });

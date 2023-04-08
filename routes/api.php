@@ -12,6 +12,7 @@ use App\Http\Controllers\AminoacidController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\NutritionalGuidanceController;
+use App\Http\Controllers\RegularController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,10 @@ Route::group(['middleware' => ['auth:api']], function() {
         Route::patch('/{meal}/changestatus', [MealController::class, 'changestatus'])->name('meal_changestatus');
         Route::patch('/{meal}/notify', [MealController::class, 'notify'])->name('meal_notify');
         Route::patch('/{meal}/done', [MealController::class, 'done'])->name('meal_done');
+    });
+
+    Route::prefix('regular')->group(function () {
+        Route::get('/{user}/meal', [RegularController::class, 'regularMeals'])->name('regular_meals');
     });
 });
 
