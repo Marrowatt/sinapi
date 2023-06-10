@@ -118,7 +118,7 @@ class RegularController extends Controller
     
      public function regularMeals (ApiRequest $request, User $user) {
 
-        $return = MealResource::collection($user->nutritional_guidance->meals);
+        $return = MealResource::collection($user->nutritional_guidance->meals->where('active', 1));
 
         return response()->json($return, 200);
     }

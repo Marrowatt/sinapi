@@ -29,10 +29,12 @@ class MealUpdateRequest extends FormRequest
     public function rules()
     {
         return [
-            'food' => ['sometimes', 'string', 'exists::App\Models\ActivityLevel,name'],
             'quantity' => ['sometimes', 'numeric','gt:0'],
-            'hour' => ['sometimes', 'string', 'hour'],
+            'hour' => ['sometimes', 'string', 'date_format:H:i:s'],
             'nickname' => ['sometimes', 'string', 'max:60'],
+            'foods' => ['sometimes', 'array', 'min:1'],
+            'foods.*.food' => ['sometimes', 'string', 'exists:App\Models\Food,name'],
+            'foods.*.quantity' => ['sometimes', 'numeric', 'gt:0'],
         ];
     }
 }

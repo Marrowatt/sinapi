@@ -194,13 +194,14 @@ class MealController extends Controller
 
         $meal->update($meal_data);
 
+        MealFood::where('meal_id', $meal->id)->delete();
+
         foreach ($request->foods as $f) {
 
             $food = Food::where("name", $f['food'])->first();
 
-            $mealfood = MealFood::where('meal_id', $meal->id)->first();
-
-            $mealfood->update([
+            MealFood::create([
+                'meal_id' => $meal->id,
                 'food_id' => $food->id,
                 'quantity' => $f['quantity']
             ]);

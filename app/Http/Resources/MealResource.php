@@ -20,7 +20,7 @@ class MealResource extends JsonResource
             'id' => $this->id,
             'hour' => $this->hour,
             'nickname' => $this->nickname,
-            'meal_food' => MealFoodResource::collection($this->meal_food),
+            'foods' => MealFoodResource::collection($this->meal_food),
             'active' => $this->active,
             'notifiable' => $this->notifiable,
             'done' => $this->done

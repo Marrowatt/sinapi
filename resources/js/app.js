@@ -4,7 +4,7 @@ window.Vue = require('vue').default;
 window.axios = require('axios');
 
 import Vue from 'vue';
-import VueRouter from 'vue-router'; 
+import VueRouter from 'vue-router';
 
 // import axios from 'axios';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
@@ -32,6 +32,10 @@ Vue.component('regular-home', require('./components/regular/Home.vue').default);
 Vue.component('create-meal', require('./components/meal/CreateMeal.vue').default);
 Vue.component('food-search', require('./components/FoodSearch.vue').default);
 Vue.component('sifu', require('./components/Sifu.vue').default);
+Vue.component('see-meal', require('./components/meal/SeeMeal.vue').default);
+Vue.component('edit-meal', require('./components/meal/EditMeal.vue').default);
+
+Vue.component('nutritionist-home', require('./components/nutritionist/HomeN.vue').default);
 
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);

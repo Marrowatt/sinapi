@@ -25,16 +25,18 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::group(['prefix' => 'nutritionist', 'middleware' => ['isNutritionist', 'auth']], function () {
-    Route::get('dashboard', [NutritionistController::class, 'index'])->name('nutri.dashboard');
-    Route::get('profile', [NutritionistController::class, 'profile'])->name('nutri.profile');
-});
-
 Route::group(['prefix' => 'regular', 'middleware' => ['isRegular', 'auth']], function () {
     Route::get('dashboard', [RegularController::class, 'index'])->name('regular.dashboard');
     Route::get('profile', [RegularController::class, 'profile'])->name('regular.profile');
     Route::put('profile/{user}', [RegularController::class, 'profile_update'])->name('regular.profile.update');
     Route::put('profile-password', [RegularController::class, 'profile_password_update'])->name('regular.profile.password');
+});
+
+Route::group(['prefix' => 'nutritionist', 'middleware' => ['isNutritionist', 'auth']], function () {
+    Route::get('dashboard', [NutritionistController::class, 'index'])->name('nutritionist.dashboard');
+    Route::get('profile', [NutritionistController::class, 'profile'])->name('nutritionist.profile');
+    Route::put('profile/{user}', [NutritionistController::class, 'profile_update'])->name('nutritionist.profile.update');
+    Route::put('profile-password', [NutritionistController::class, 'profile_password_update'])->name('nutritionist.profile.password');
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth']], function () {
