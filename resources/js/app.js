@@ -46,7 +46,7 @@ import 'vue-css-donut-chart/dist/vcdonut.css';
 Vue.use(Donut);
 
 const app = new Vue({
-    el: '#app',
+    el: '#wrapper',
     components: {
     }
 });

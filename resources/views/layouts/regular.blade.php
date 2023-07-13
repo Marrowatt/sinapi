@@ -34,7 +34,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('regular.dashboard') }}">
-                <div class="sidebar-brand-text mx-3"> {{ config('app.name') }} </div>
+                <div class="sidebar-brand-text d-block mx-3"> {{ config('app.name') }} </div>
             </a>
 
             <!-- Divider -->
@@ -44,7 +44,8 @@
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('regular.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -95,7 +96,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <div id="">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -106,6 +107,7 @@
                     </button>
 
                     <!-- Topbar Search -->
+                    <food-search></food-search>
                     <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -181,7 +183,7 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small"> {{ auth()->user()->name }} </span>
+                                <span class="mr-2 text-gray-600 small"> <i class="fas fa-2x fa-user"></i> </span>
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -215,11 +217,11 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div id="app">
+                {{-- <div> --}}
                     <main>
                         @yield('content')
                     </main>
-                </div>
+                {{-- </div> --}}
 
             </div>
             <!-- End of Main Content -->
@@ -264,7 +266,6 @@
             </div>
         </div>
     </div>
-
     
     <script src="{{ mix('js/app.js') }}"></script>
 

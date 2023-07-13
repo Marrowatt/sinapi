@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ApiRequest;
+use Illuminate\Support\Facades\Cache;
 
 use LaravelLegends\EloquentFilter\Filter;
 
@@ -62,8 +63,10 @@ class FoodController extends Controller
      */
     public function index (ApiRequest $request) {
 
-        $foods = FoodResource::collection(Food::get());
-
+        $foods = Cache::rememberForever('foods', function () {
+            return FoodResource::collection(Food::get());
+        });
+        
         return response()->json($foods, 200);
     }
 

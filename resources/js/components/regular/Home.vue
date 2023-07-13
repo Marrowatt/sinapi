@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" style="min-height: 81vh">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
@@ -14,9 +14,10 @@
                   class="text-xs font-weight-bold text-primary text-uppercase mb-1"
                 >
                   Calorias ({{ regular.formula }})
+                  <i class="fas fa-info-circle" :title="calor"></i>
                 </div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  0 / {{ regular.bmr }} kcal
+                  {{ regular.bmr }} kcal
                 </div>
               </div>
               <div class="col-auto">
@@ -36,27 +37,33 @@
                   class="text-xs font-weight-bold text-success text-uppercase mb-2"
                 >
                   Macronutrientes
+                  <i class="fas fa-info-circle" :title="macro"></i>
                 </div>
                 <div class="row" v-if="regular.predicts">
-                  <div class="col-3 mx-auto text-center">
-                    <div class="rounded-circle border border-danger py-3">
+                  <div class="col-4 mx-auto text-center">
+                    <div class="">
                       {{ regular.predicts.ideal_macro.carb }} g
                     </div>
-                    <p class="text-xs font-weight-bold mt-2">Carboidrato</p>
+                    <span class="text-xs font-weight-bold mt-2"
+                      >Carboidrato</span
+                    >
+                    <i class="fas fa-info-circle" :title="carbo"></i>
                   </div>
 
-                  <div class="col-3 mx-auto text-center">
-                    <div class="rounded-circle border border-info py-3">
+                  <div class="col-4 mx-auto text-center">
+                    <div class="">
                       {{ regular.predicts.ideal_macro.gord }} g
                     </div>
-                    <p class="text-xs font-weight-bold mt-2">Gordura</p>
+                    <span class="text-xs font-weight-bold mt-2">Gordura</span>
+                    <i class="fas fa-info-circle" :title="gordo"></i>
                   </div>
 
-                  <div class="col-3 mx-auto text-center">
-                    <div class="rounded-circle border border-secondary py-3">
+                  <div class="col-4 mx-auto text-center">
+                    <div class="">
                       {{ regular.predicts.ideal_macro.prot }} g
                     </div>
-                    <p class="text-xs font-weight-bold mt-2">Proteína</p>
+                    <span class="text-xs font-weight-bold mt-2">Proteína</span>
+                    <i class="fas fa-info-circle" :title="proto"></i>
                   </div>
                 </div>
               </div>
@@ -73,10 +80,11 @@
                 <div
                   class="text-xs font-weight-bold text-primary text-uppercase mb-1"
                 >
-                  Consumo Hídrico
+                  Consumo de Água
+                  <i class="fas fa-info-circle" :title="agua"></i>
                 </div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  0 / {{ regular.predicts.ideal_water_consumption }} l
+                  {{ regular.predicts.ideal_water_consumption }} l
                 </div>
               </div>
               <div class="col-auto">
@@ -194,6 +202,13 @@ export default {
       foods: [],
       mealing: {},
       mealong: {},
+      calor:
+        "Estimativa do quanto de energia é necessário para a sobrevivência",
+      macro: "Estimativa do que nos fornece energia",
+      carbo: "Pães, massas, grãos, batata, frutas",
+      gordo: "Manteiga, óleos, queijo, abacate",
+      proto: "Carnes, ovos, legumes, leite",
+      agua: "Estimativa do quanto de água deveria consumir",
     };
   },
   mounted() {

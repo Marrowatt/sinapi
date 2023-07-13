@@ -31,7 +31,7 @@ class RedirectIfAuthenticated
             }
             
             if ( Auth::guard($guard)->check() && Auth::user()->user_type_id == 2 ) {
-                return redirect()->route('nutri.dashboard');
+                return redirect()->route('nutritionist.dashboard');
             }
 
             if ( Auth::guard($guard)->check() && Auth::user()->user_type_id == 3 ) {

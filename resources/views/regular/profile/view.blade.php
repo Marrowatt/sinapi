@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid" style="min-height: 81vh">
 
     <div class="d-flex flex-column flex-md-row">
 
@@ -17,13 +17,12 @@
                     <form method="post" action="{{ route('regular.profile.update', auth()->user()->id) }}" autocomplete="off" enctype="multipart/form-data">
                         @csrf
                         @method('put')
-                        {{-- @include('alerts.success') --}}
+
                         <div class="row">
                             <div class="col-md-12 pr-1">
                                 <div class="form-group">
                                     <label for="name">Nome:</label>
                                     <input type="text" name="name" class="form-control" value="{{ old('name', auth()->user()->name) }}">
-                                    {{-- @include('alerts.feedback', ['field' => 'name']) --}}
                                 </div>
                             </div>
                         </div>
@@ -33,7 +32,6 @@
                                 <div class="form-group">
                                     <label for="email">Email:</label>
                                     <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email', auth()->user()->email) }}">
-                                    {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
                             </div>
                         </div>
@@ -43,14 +41,12 @@
                                 <div class="form-group">
                                     <label for="weight">Peso (kg):</label>
                                     <input type="number" step="0.01" name="weight" class="form-control" placeholder="Peso" value="{{ old('weight', auth()->user()->weight / 100) }}">
-                                    {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 pr-1">
                                 <div class="form-group">
                                     <label for="height">Altura (m):</label>
                                     <input type="number" step="0.01" name="height" class="form-control" placeholder="Email" value="{{ old('height', auth()->user()->height / 100) }}">
-                                    {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
                             </div>
                         </div>
@@ -60,14 +56,12 @@
                                 <div class="form-group">
                                     <label for="birthday">Data de nascimento:</label>
                                     <input type="date" name="birthday" class="form-control"  value="{{ old('birthday', auth()->user()->birthday) }}">
-                                    {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
                             </div>
                             <div class="col-12 col-md-6 pr-1">
                                 <div class="form-group">
                                     <label for="phone">Telefone:</label>
                                     <input type="text" name="phone" class="form-control" placeholder="Telefone:" value="{{ old('phone', auth()->user()->phone) }}">
-                                    {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
                             </div>
                         </div>
@@ -86,14 +80,12 @@
                                             @endif
                                         @endforeach
                                     </select>
-
-                                    {{-- <input type="date" name="birthday" class="form-control"  value="{{ old('birthday', auth()->user()->birthday) }}"> --}}
-                                    {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
                             </div>
                             
                             <div class="col-12 col-md-6 pr-1">
                                 <div class="form-group">
+                                    
                                     <label for="gender_id">Gênero:</label>
 
                                     <select name="gender_id" id="gender_id" class="form-control">
@@ -105,14 +97,11 @@
                                             @endif
                                         @endforeach
                                     </select>
-
-                                    {{-- <input type="date" name="birthday" class="form-control"  value="{{ old('birthday', auth()->user()->birthday) }}"> --}}
-                                    {{-- @include('alerts.feedback', ['field' => 'email']) --}}
                                 </div>
-                            </div>
+                            </div> 
                             <div class="col-12 col-md-6 pr-1">
                                 <div class="form-group">
-                                    <label for="height">Fórmula utilizada:</label>
+                                    <label for="height">Fórmula utilizada: </label>
 
                                     <select name="formula_id" id="formula_id" class="form-control">
                                         @foreach ($formulas as $form)

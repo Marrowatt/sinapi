@@ -34,17 +34,25 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ route('nutritionist.dashboard') }}">
-                <div class="sidebar-brand-text mx-3"> {{ config('app.name') }} </div>
+                <div class="sidebar-brand-text d-block mx-3"> {{ config('app.name') }} </div>
             </a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item active">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('nutritionist.dashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
+                    <span>Dashboard</span>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('nutritionist.dashboard') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>Pacientes</span>
+                </a>
             </li>
 
             <!-- Divider -->
@@ -79,10 +87,10 @@
             </li> --}}
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+            {{-- <hr class="sidebar-divider d-none d-md-block"> --}}
 
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
+            <div class="text-center d-none d-md-inline mt-4">
                 <button class="rounded-circle border-0" id="sidebarToggle">
                     <i class="fas fa-arrow-left text-light"></i>
                 </button>
@@ -95,7 +103,7 @@
         <div id="content-wrapper" class="d-flex flex-column">
 
             <!-- Main Content -->
-            <div id="content">
+            <div id="app">
 
                 <!-- Topbar -->
                 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
@@ -106,6 +114,7 @@
                     </button>
 
                     <!-- Topbar Search -->
+                    <food-search></food-search>
                     <!-- <form
                         class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                         <div class="input-group">
@@ -215,11 +224,11 @@
                 </nav>
                 <!-- End of Topbar -->
 
-                <div id="app">
+                {{-- <div> --}}
                     <main>
                         @yield('content')
                     </main>
-                </div>
+                {{-- </div> --}}
 
             </div>
             <!-- End of Main Content -->

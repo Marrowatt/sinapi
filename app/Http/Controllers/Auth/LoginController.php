@@ -33,7 +33,7 @@ class LoginController extends Controller
         if (auth()->user()->user_type_id == 1) {
             return route('regular.dashboard');
         } elseif (auth()->user()->user_type_id == 2) {
-            return route('nutri.dashboard');
+            return route('nutritionist.dashboard');
         } elseif (auth()->user()->user_type_id == 3) {
             return route('admin.dashboard');
         }
