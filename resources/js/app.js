@@ -27,7 +27,6 @@ Vue.use(VueRouter);
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('regular-home', require('./components/regular/Home.vue').default);
 Vue.component('create-meal', require('./components/meal/CreateMeal.vue').default);
 Vue.component('food-search', require('./components/FoodSearch.vue').default);
@@ -36,6 +35,7 @@ Vue.component('see-meal', require('./components/meal/SeeMeal.vue').default);
 Vue.component('edit-meal', require('./components/meal/EditMeal.vue').default);
 
 Vue.component('nutritionist-home', require('./components/nutritionist/HomeN.vue').default);
+Vue.component('patients', require('./components/nutritionist/Patients.vue').default);
 
 import JwPagination from 'jw-vue-pagination';
 Vue.component('jw-pagination', JwPagination);

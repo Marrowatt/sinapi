@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid">
+  <div class="container-fluid" style="min-height: 81vh">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
       <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
     </div>
@@ -10,13 +10,12 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col pr-4">
-                <div
-                  class="text-xs font-weight-bold text-primary text-uppercase mb-1"
-                >
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >
                   Calorias ({{ regular.formula }})
+                  <i class="fas fa-info-circle" :title="calor"></i>
                 </div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  0 / {{ regular.bmr }} kcal
+                  {{ regular.bmr }} kcal
                 </div>
               </div>
               <div class="col-auto">
@@ -32,31 +31,33 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col pr-2">
-                <div
-                  class="text-xs font-weight-bold text-success text-uppercase mb-2"
-                >
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-2" >
                   Macronutrientes
+                  <i class="fas fa-info-circle" :title="macro"></i>
                 </div>
                 <div class="row" v-if="regular.predicts">
-                  <div class="col-3 mx-auto text-center">
-                    <div class="rounded-circle border border-danger py-3">
+                  <div class="col-4 mx-auto text-center">
+                    <div class="py-2">
                       {{ regular.predicts.ideal_macro.carb }} g
                     </div>
-                    <p class="text-xs font-weight-bold mt-2">Carboidrato</p>
+                    <span class="text-xs font-weight-bold mt-2">Carboidrato</span>
+                    <i class="fas fa-info-circle" :title="carbo"></i>
                   </div>
 
-                  <div class="col-3 mx-auto text-center">
-                    <div class="rounded-circle border border-info py-3">
+                  <div class="col-4 mx-auto text-center">
+                    <div class="py-2">
                       {{ regular.predicts.ideal_macro.gord }} g
                     </div>
-                    <p class="text-xs font-weight-bold mt-2">Gordura</p>
+                    <span class="text-xs font-weight-bold mt-2">Gordura</span>
+                    <i class="fas fa-info-circle" :title="gordo"></i>
                   </div>
 
-                  <div class="col-3 mx-auto text-center">
-                    <div class="rounded-circle border border-secondary py-3">
+                  <div class="col-4 mx-auto text-center">
+                    <div class="py-2">
                       {{ regular.predicts.ideal_macro.prot }} g
                     </div>
-                    <p class="text-xs font-weight-bold mt-2">Proteína</p>
+                    <span class="text-xs font-weight-bold mt-2">Proteína</span>
+                    <i class="fas fa-info-circle" :title="proto"></i>
                   </div>
                 </div>
               </div>
@@ -70,13 +71,12 @@
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col pr-2" v-if="regular.predicts">
-                <div
-                  class="text-xs font-weight-bold text-primary text-uppercase mb-1"
-                >
-                  Consumo Hídrico
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1" >
+                  Consumo de Água
+                  <i class="fas fa-info-circle" :title="agua"></i>
                 </div>
                 <div class="h5 mb-0 font-weight-bold text-gray-800">
-                  0 / {{ regular.predicts.ideal_water_consumption }} l
+                  {{ regular.predicts.ideal_water_consumption }} l
                 </div>
               </div>
               <div class="col-auto">
@@ -95,19 +95,12 @@
     </div>
 
     <div class="row" v-if="load">
-      <div
-        class="col-xl-3 col-md-6 mb-4"
-        data-toggle="seeMeal"
-        v-for="(m, i) in meals"
-        :key="i"
-      >
+      <div class="col-xl-3 col-md-6 mb-4" data-toggle="seeMeal" v-for="(m, i) in meals" :key="i" >
         <div class="card border-left-primary shadow h-100 pt-2">
           <div class="card-body">
             <div class="row align-items-center">
               <div class="col pr-4">
-                <div
-                  class="font-weight-bold text-secondary text-uppercase mb-1"
-                >
+                <div class="font-weight-bold text-secondary text-uppercase mb-1" >
                   {{ m.nickname }}
                 </div>
                 <div class="h6 mb-0 font-weight-bold text-gray-800">
@@ -115,26 +108,13 @@
                 </div>
               </div>
               <div class="col-auto">
-                <button
-                  class="btn btn-light rounded-circle border px-2 py-1"
-                  data-toggle="modal"
-                  data-target="#seemeal"
-                  @click="mealing = m"
-                >
+                <button class="btn btn-light rounded-circle border px-2 py-1" data-toggle="modal" data-target="#seemeal" @click="mealing = m" >
                   <i class="fas fa-eye text-gray-300"></i>
                 </button>
-                <button
-                  class="btn btn-light rounded-circle border border-warning bg-warning px-2 py-1"
-                  data-toggle="modal"
-                  data-target="#editmeal"
-                  @click="mealong = m"
-                >
+                <button class="btn btn-light rounded-circle border border-warning bg-warning px-2 py-1" data-toggle="modal" data-target="#editmeal" @click="mealong = m" >
                   <i class="fas fa-pen text-white"></i>
                 </button>
-                <button
-                  class="btn btn-light rounded-circle border border-danger bg-danger px-2 py-1"
-                  @click="trash(m)"
-                >
+                <button class="btn btn-light rounded-circle border border-danger bg-danger px-2 py-1" @click="trash(m)" >
                   <i class="fas fa-trash text-white"></i>
                 </button>
               </div>
@@ -153,11 +133,7 @@
                 </div>
               </div>
               <div class="col-auto">
-                <button
-                  class="btn btn-light rounded-circle border border-success px-2 py-1"
-                  data-toggle="modal"
-                  data-target="#mealcreate"
-                >
+                <button class="btn btn-light rounded-circle border border-success px-2 py-1" data-toggle="modal" data-target="#mealcreate" >
                   <i class="fas fa-plus text-success"></i>
                 </button>
               </div>
@@ -168,12 +144,7 @@
     </div>
 
     <create-meal :comidas="foods" @creating="create" v-if="foods"></create-meal>
-    <edit-meal
-      :comidas="foods"
-      @editing="edite"
-      :meal="mealong"
-      v-if="foods"
-    ></edit-meal>
+    <edit-meal :comidas="foods" @editing="edite" :meal="mealong" v-if="foods" ></edit-meal>
     <see-meal :mealing="mealing"></see-meal>
   </div>
 </template>
@@ -194,6 +165,12 @@ export default {
       foods: [],
       mealing: {},
       mealong: {},
+      calor: "Estimativa do quanto de energia é necessário para a sobrevivência",
+      macro: "Estimativa do que nos fornece energia",
+      carbo: "Pães, massas, grãos, batata, frutas",
+      gordo: "Manteiga, óleos, queijo, abacate",
+      proto: "Carnes, ovos, legumes, leite",
+      agua: "Estimativa do quanto de água deveria consumir",
     };
   },
   mounted() {

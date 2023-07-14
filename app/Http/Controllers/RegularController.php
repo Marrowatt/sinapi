@@ -62,12 +62,6 @@ class RegularController extends Controller
 
         return redirect()->route('regular.profile');
     }
-
-    
-    public function profile_password_update () {
-        
-    }
-
     
     /**
      * Display a listing of the resource.

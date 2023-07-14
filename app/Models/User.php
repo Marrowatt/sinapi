@@ -61,6 +61,10 @@ class User extends Authenticatable
         return $this->hasOne(NutritionalGuidance::class);
     }
 
+    public function patients_guidance () {
+        return $this->hasMany(NutritionalGuidance::class, 'nutritionist_id');
+    }
+
     public function formula () {
         return $this->belongsTo(Formula::class);
     }

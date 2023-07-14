@@ -56,9 +56,21 @@ class NutritionistController extends Controller
 
         return redirect()->route('nutritionist.profile');
     }
-    
-    public function profile_password_update () {
-        
+
+    public function patients () {
+        return view('nutritionist.patients');
     }
     
+    public function getPatients (Request $request) {
+
+        $patients_guidance = auth()->user()->patients_guidance;
+
+        $return = array();
+
+        foreach ($patients_guidance as $pg) {
+            array_push($return, $pg->patient);
+        }
+
+        return $return;
+    }
 }

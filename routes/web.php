@@ -5,7 +5,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\NutritionistController;
 use App\Http\Controllers\RegularController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FoodController;
 
 /*
@@ -37,11 +36,8 @@ Route::group(['prefix' => 'nutritionist', 'middleware' => ['isNutritionist', 'au
     Route::get('profile', [NutritionistController::class, 'profile'])->name('nutritionist.profile');
     Route::put('profile/{user}', [NutritionistController::class, 'profile_update'])->name('nutritionist.profile.update');
     Route::put('profile-password', [NutritionistController::class, 'profile_password_update'])->name('nutritionist.profile.password');
-});
-
-Route::group(['prefix' => 'admin', 'middleware' => ['isAdmin', 'auth']], function () {
-    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
-    Route::get('profile', [AdminController::class, 'profile'])->name('admin.profile');
+    Route::get('patients', [NutritionistController::class, 'patients'])->name('nutritionist.patients');
+    Route::get('/getPatients', [NutritionistController::class, 'getPatients'])->name('get_patients');
 });
 
 Route::get('getFood', [FoodController::class, 'getFood'])->name('getFood');

@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         // UserTypes
 
-        $user_types = ["Regular", "Nutritionist", "Admin"];
+        $user_types = ["Regular", "Nutritionist"];
 
         foreach ($user_types as $ut) {
             \App\Models\UserType::create(['name' => $ut]);
@@ -53,14 +53,14 @@ class DatabaseSeeder extends Seeder
         // Specific User
 
         \App\Models\User::create([
-            'name' => 'Ademir Nistro',
-            'email' => 'ademir@gmeil.com',
+            'name' => 'Ademir Nutri',
+            'email' => 'ademir@gmail.com',
             'email_verified_at' => now(),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'api_token' => 'token',
             'remember_token' => Str::random(10),
             'phone' => '55' + strval(rand(911111111, 999999999)),
-            'user_type_id' => 3,
+            'user_type_id' => 2,
             'gender_id' => rand(1, 2),
             'activity_level_id' => rand(1, 4),
             'weight' => rand(6500, 12000),

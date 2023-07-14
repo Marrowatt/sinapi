@@ -14,4 +14,12 @@ class NutritionalGuidance extends Model
     public function meals () {
         return $this->hasMany(Meal::class);
     }
+
+    // public function nutritionist () {
+    //     return $this->belongsTo(User::class);
+    // }
+
+    public function patient () {
+        return $this->belongsTo(User::class, 'id');
+    }
 }
