@@ -36,9 +36,13 @@ Vue.component('edit-meal', require('./components/meal/EditMeal.vue').default);
 
 Vue.component('nutritionist-home', require('./components/nutritionist/HomeN.vue').default);
 Vue.component('patients', require('./components/nutritionist/Patients.vue').default);
+Vue.component('seepatient', require('./components/nutritionist/SeePatient.vue').default);
+Vue.component('editmealspatient', require('./components/nutritionist/EditMealsPatient.vue').default);
 
-import JwPagination from 'jw-vue-pagination';
-Vue.component('jw-pagination', JwPagination);
+// import JwPagination from 'jw-vue-pagination';
+// Vue.component('jw-pagination', JwPagination);
+
+Vue.component('pagination', require('./components/Paginathor.vue').default);
 
 import Donut from 'vue-css-donut-chart';
 import 'vue-css-donut-chart/dist/vcdonut.css';

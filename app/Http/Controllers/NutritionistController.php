@@ -8,6 +8,7 @@ use App\Models\ActivityLevel;
 use App\Models\Gender;
 use App\Models\Formula;
 use App\Models\User;
+use App\Http\Resources\UserResource;
 
 class NutritionistController extends Controller
 {   
@@ -70,7 +71,7 @@ class NutritionistController extends Controller
         foreach ($patients_guidance as $pg) {
             array_push($return, $pg->patient);
         }
-
-        return $return;
+        
+        return response()->json(UserResource::collection($return)->paginate(15), 200);
     }
 }

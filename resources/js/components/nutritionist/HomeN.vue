@@ -219,7 +219,7 @@ export default {
             this.errors = {
               Erro: { message: "Erro! Tente novamente mais tarde." },
             };
-          this.getMeals();
+          this.getUserMeals();
         });
     },
     edite(payload) {
@@ -241,7 +241,7 @@ export default {
             this.errors = {
               Erro: { message: "Erro! Tente novamente mais tarde." },
             };
-          this.getMeals();
+          this.getUserMeals();
         });
     },
     trash(meal) {
@@ -272,7 +272,7 @@ export default {
                 this.errors = {
                   Erro: { message: "Erro! Tente novamente mais tarde." },
                 };
-              this.getMeals();
+              this.getUserMeals();
             });
         }
       });
