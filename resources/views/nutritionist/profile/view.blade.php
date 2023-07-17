@@ -2,7 +2,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid" style="min-height: 81vh">
 
     <div class="d-flex flex-column flex-md-row">
 

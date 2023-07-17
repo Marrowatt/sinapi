@@ -17,7 +17,6 @@
 
     <div class="row mx-1 mt-2">
       <div class="col-3">Peso: {{ patient.weight / 100 }} kg</div>
-
       <div class="col-3">IMC: {{ patient.predicts.bmi }} kg/m²</div>
 
       <div class="col-3">
@@ -28,6 +27,11 @@
       <div class="col-3">
         Consumo ideal de água: {{ patient.predicts.ideal_water_consumption }} l
       </div>
+    </div>
+
+    <div class="row mx-1 mt-2">
+      <div class="col-3">Altura: {{ patient.height / 100 }} m</div>
+      <div class="col-3">Idade: {{ patient.age }} anos</div>
     </div>
 
     <div class="row mx-1 mt-2">

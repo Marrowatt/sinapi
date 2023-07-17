@@ -16,7 +16,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // UserTypes
-
         $user_types = ["Regular", "Nutritionist"];
 
         foreach ($user_types as $ut) {
@@ -24,7 +23,6 @@ class DatabaseSeeder extends Seeder
         }
 
         // Genders
-
         $genders = ["Feminino", "Masculino"];
 
         foreach ($genders as $g) {
@@ -32,15 +30,13 @@ class DatabaseSeeder extends Seeder
         }
 
         // Activity Levels
-
         $activity_levels = ["Sedentário", "Leve", "Moderado", "Intenso", "Muito Intenso"];
 
         foreach ($activity_levels as $al) {
             \App\Models\ActivityLevel::create(['name' => $al]);
         }
 
-        // Activity Levels
-
+        // Formulas
         $formulas = ["Harris-Benedict", "Mifflin St-Jeor", "FAO/OMS"];
 
         foreach ($formulas as $f) {
@@ -51,8 +47,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::factory(10)->create();
 
         // Specific User
-
-        \App\Models\User::create([
+        $nutri = \App\Models\User::create([
             'name' => 'Ademir Nutri',
             'email' => 'ademir@gmail.com',
             'email_verified_at' => now(),
@@ -61,7 +56,7 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'phone' => '55' + strval(rand(911111111, 999999999)),
             'user_type_id' => 2,
-            'gender_id' => rand(1, 2),
+            'gender_id' => 2,
             'activity_level_id' => rand(1, 4),
             'weight' => rand(6500, 12000),
             'height' => rand(165, 199),
@@ -69,9 +64,7 @@ class DatabaseSeeder extends Seeder
             'formula_id' => rand(1, 3)
         ]);
 
-        $users = \App\Models\User::get();
-        $user_type_nutri = \App\Models\UserType::where('name', 'Nutritionist')->first();
-        $nutri = \App\Models\User::where('user_type_id', $user_type_nutri->id)->first();
+        $users = \App\Models\User::where('user_type_id', 1)->get();
 
         foreach ($users as $u) {
             $u->nutritional_guidance->update(['nutritionist_id' => $nutri->id]);

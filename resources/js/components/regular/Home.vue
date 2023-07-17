@@ -150,6 +150,7 @@
     <create-meal :comidas="foods" @creating="create" v-if="foods"></create-meal>
     <edit-meal :comidas="foods" @editing="edite" :meal="mealong" v-if="foods" ></edit-meal>
     <see-meal :mealing="mealing"></see-meal>
+    <notifications/>
   </div>
 </template>
 

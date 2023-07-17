@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use Carbon\Carbon;
 
 class UserResource extends JsonResource
 {
@@ -21,6 +22,7 @@ class UserResource extends JsonResource
         return [
             "id" => $this->id,
             "name" => $this->name,
+            "age" => Carbon::now()->diffInYears($this->birthday),
             "user_type" => $this->user_type->name,
             "activity_level" => new ActivityLevelResource($this->whenLoaded('activity_level')),
             "phone" => $this->phone,
