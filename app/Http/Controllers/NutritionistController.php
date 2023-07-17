@@ -8,6 +8,7 @@ use App\Models\ActivityLevel;
 use App\Models\Gender;
 use App\Models\Formula;
 use App\Models\User;
+use App\Models\NutritionalGuidance;
 use App\Http\Resources\UserResource;
 use Illuminate\Support\Facades\Hash;
 
@@ -87,5 +88,111 @@ class NutritionistController extends Controller
         }
         
         return response()->json(UserResource::collection($return)->paginate(15), 200);
+    }
+
+    /**
+     * @OA\Patch(
+     *      path="/api/nutritionist/{id}/unlink/{user}",
+     *      operationId="unlinkPatient",
+     *      tags={"Nutritionist"},
+     *      summary="Unlink a patient from a nutritionist",
+     *      description="Unlink a patient from a nutritionist",
+     *      @OA\Parameter(
+     *          name="api_token",
+     *          description="Api Token",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Nutritionist id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="user",
+     *          description="Patient id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       )
+     *     )
+     */
+    public function unlinkPatient (Request $request, User $nutritionist, User $user) {
+
+        $guidance = NutritionalGuidance::where('nutritionist_id', $nutritionist->id)
+                                       ->where('user_id', $user->id)->firstOrFail();
+
+        $guidance->update([
+            'nutritionist_id' => null
+        ]);
+
+        return response()->json(['msg' => 'Paciente desvinculado'], 200);
+    }
+    
+    /**
+     * @OA\Patch(
+     *      path="/api/nutritionist/{id}/link/{user}",
+     *      operationId="linkPatient",
+     *      tags={"Nutritionist"},
+     *      summary="Link a patient from a nutritionist",
+     *      description="Link a patient from a nutritionist",
+     *      @OA\Parameter(
+     *          name="api_token",
+     *          description="Api Token",
+     *          required=true,
+     *          in="query",
+     *          @OA\Schema(
+     *              type="string"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="id",
+     *          description="Nutritionist id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Parameter(
+     *          name="user",
+     *          description="Patient id",
+     *          required=true,
+     *          in="path",
+     *          @OA\Schema(
+     *              type="integer"
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Successful operation",
+     *          @OA\JsonContent()
+     *       )
+     *     )
+     */
+    public function linkPatient (Request $request, User $nutritionist, User $user) {
+
+        $guidance = NutritionalGuidance::where('nutritionist_id', null)
+                                       ->where('user_id', $user->id)->firstOrFail();
+
+        $guidance->update([
+            'nutritionist_id' => $nutritionist->id
+        ]);
+
+        return response()->json(['msg' => 'Paciente vinculado'], 200);
     }
 }

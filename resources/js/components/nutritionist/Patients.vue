@@ -51,6 +51,7 @@
             </div>
         </div>
     </div>
+    <notifications/>
   </div>
 </template>
 
@@ -111,18 +112,30 @@ export default {
             }).then((result) => {
                 if (result.isConfirmed) {
                     this.toNull();
+                    
+                    axios.patch("/api/nutritionist/" + this.id + "/unlink/" + patient.id + "?api_token=" + this.token).then((data) => {
+                        
+                        this.$notify({
+                            title: 'Paciente Desvinculado',
+                            // text: 'Hello user!'
+                            type: 'success'
+                        });
 
-                    axios.patch("/api/nutritionist/unlink/" + patient.id + "?api_token=" + this.token).then((data) => {
-
-                        this.message = "Paciente desvinculado!";
                         this.getPatients();
                     }).catch((error) => {
+                        
                         if (error.response.status == 422)
                             this.errors = error.response.data;
                         if (error.response.status == 500)
-                            this.errors = {
-                                Erro: { message: "Erro! Tente novamente mais tarde." },
-                            };
+                            // this.errors = {
+                            //     Erro: { message: "Erro! Tente novamente mais tarde." },
+                            // };
+                            this.$notify({
+                                title: 'Erro!',
+                                text: 'Tente novamente mais tarde.',
+                                type: 'error'
+                            });
+
                         this.getPatients();
                     });
                 }                                               

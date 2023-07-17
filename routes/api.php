@@ -13,6 +13,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\MealController;
 use App\Http\Controllers\NutritionalGuidanceController;
 use App\Http\Controllers\RegularController;
+use App\Http\Controllers\NutritionistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,11 @@ Route::group(['middleware' => ['auth:api']], function() {
 
     Route::prefix('regular')->group(function () {
         Route::get('/{user}/meal', [RegularController::class, 'regularMeals'])->name('regular_meals');
+    });
+
+    Route::prefix('nutritionist')->group(function () {
+        Route::patch('/{nutritionist}/unlink/{user}', [NutritionistController::class, 'unlinkPatient'])->name('unlink_patient');
+        Route::patch('/{nutritionist}/link/{user}', [NutritionistController::class, 'linkPatient'])->name('link_patient');
     });
 });
 

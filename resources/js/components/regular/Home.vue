@@ -214,15 +214,17 @@ export default {
       axios
         .post("/api/meal?api_token=" + this.token, payload.meal)
         .then((data) => {
-          this.message = "Refeição criada!";
+          // this.message = "Refeição criada!";
+          this.$notify({type: 'success', title: 'Refeição criada!'});
           this.getUserMeals();
         })
         .catch((error) => {
           if (error.response.status == 422) this.errors = error.response.data;
           if (error.response.status == 500)
-            this.errors = {
-              Erro: { message: "Erro! Tente novamente mais tarde." },
-            };
+            // this.errors = {
+            //   Erro: { message: "Erro! Tente novamente mais tarde." },
+            // };
+            this.$notify({type: 'error', title: 'Erro!', text: 'Tente novamente mais tarde.'});
           this.getUserMeals();
         });
     },
@@ -236,15 +238,17 @@ export default {
           payload.meal
         )
         .then((data) => {
-          this.message = "Refeição editada!";
+          // this.message = "Refeição editada!";
+          this.$notify({type: 'success', title: 'Refeição editada!'});
           this.getUserMeals();
         })
         .catch((error) => {
           if (error.response.status == 422) this.errors = error.response.data;
           if (error.response.status == 500)
-            this.errors = {
-              Erro: { message: "Erro! Tente novamente mais tarde." },
-            };
+            // this.errors = {
+            //   Erro: { message: "Erro! Tente novamente mais tarde." },
+            // };
+            this.$notify({type: 'error', title: 'Erro!', text: 'Tente novamente mais tarde.'});
           this.getUserMeals();
         });
     },
@@ -266,16 +270,18 @@ export default {
               "/api/meal/" + meal.id + "/changestatus?api_token=" + this.token
             )
             .then((data) => {
-              this.message = "Refeição excluída!";
+              // this.message = "Refeição excluída!";
+              this.$notify({type: 'success', title: 'Refeição excluída!'});
               this.getUserMeals();
             })
             .catch((error) => {
               if (error.response.status == 422)
                 this.errors = error.response.data;
               if (error.response.status == 500)
-                this.errors = {
-                  Erro: { message: "Erro! Tente novamente mais tarde." },
-                };
+                // this.errors = {
+                //   Erro: { message: "Erro! Tente novamente mais tarde." },
+                // };
+                this.$notify({type: 'error', title: 'Erro!', text: 'Tente novamente mais tarde.'});
               this.getUserMeals();
             });
         }

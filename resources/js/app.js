@@ -49,6 +49,9 @@ import 'vue-css-donut-chart/dist/vcdonut.css';
 
 Vue.use(Donut);
 
+import Notifications from 'vue-notification'
+Vue.use(Notifications)
+
 const app = new Vue({
     el: '#wrapper',
     components: {
