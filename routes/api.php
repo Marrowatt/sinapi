@@ -3,6 +3,18 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\FoodController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ActivityLevelController;
+use App\Http\Controllers\AGController;
+use App\Http\Controllers\CMVColController;
+use App\Http\Controllers\AminoacidController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\MealController;
+use App\Http\Controllers\NutritionalGuidanceController;
+use App\Http\Controllers\RegularController;
+use App\Http\Controllers\NutritionistController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -17,3 +29,47 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::group(['middleware' => ['auth:api']], function() {
+
+    Route::apiResource('/food', FoodController::class)->except(['destroy']);
+
+    Route::apiResource('/category', CategoryController::class)->except(['destroy']);
+
+    Route::prefix('category')->group(function () {
+        Route::get('/{category}/food', [CategoryController::class, 'categoryFoods'])->name('category_foods');
+    });
+
+    Route::apiResource('/activitylevel', ActivityLevelController::class)->except(['destroy']);
+
+    Route::apiResource('/ag', AGController::class)->except(['destroy']);
+
+    Route::apiResource('/cmvcol', CMVColController::class)->except(['destroy']);
+
+    Route::apiResource('/aminoacid', AminoacidController::class)->except(['destroy']);
+
+    Route::apiResource('/user', UserController::class)->except(['destroy']);
+
+    Route::prefix('user')->group(function () {
+        Route::patch('/{user}/changestatus', [UserController::class, 'changestatus'])->name('user_changestatus');
+        Route::get('/{user}/wishlist', [UserController::class, 'wishlist'])->name('user_wishlist');
+    });
+    
+    Route::apiResource('/meal', MealController::class)->except(['destroy']);
+
+    Route::prefix('meal')->group(function () {
+        Route::patch('/{meal}/changestatus', [MealController::class, 'changestatus'])->name('meal_changestatus');
+        Route::patch('/{meal}/notify', [MealController::class, 'notify'])->name('meal_notify');
+        Route::patch('/{meal}/done', [MealController::class, 'done'])->name('meal_done');
+    });
+
+    Route::prefix('regular')->group(function () {
+        Route::get('/{user}/meal', [RegularController::class, 'regularMeals'])->name('regular_meals');
+    });
+
+    Route::prefix('nutritionist')->group(function () {
+        Route::patch('/{nutritionist}/unlink/{user}', [NutritionistController::class, 'unlinkPatient'])->name('unlink_patient');
+        Route::patch('/{nutritionist}/link/{user}', [NutritionistController::class, 'linkPatient'])->name('link_patient');
+    });
+});
+

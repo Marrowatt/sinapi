@@ -1,0 +1,1304 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Sistema de Controle Nutricional",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/ag": {
+            "get": {
+                "tags": [
+                    "AG"
+                ],
+                "summary": "Get list of fatty acids",
+                "description": "Returns list of fatty acids",
+                "operationId": "getAGList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/ag/{id}": {
+            "get": {
+                "tags": [
+                    "AG"
+                ],
+                "summary": "Get a fatty acid by id",
+                "description": "Returns one fatty acid",
+                "operationId": "getOneAG",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "AG id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/activitylevel": {
+            "get": {
+                "tags": [
+                    "ActivityLevel"
+                ],
+                "summary": "Get list of activities level",
+                "description": "Returns list of activities level",
+                "operationId": "getActivityLevelList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/activitylevel/{id}": {
+            "get": {
+                "tags": [
+                    "ActivityLevel"
+                ],
+                "summary": "Get a activity level by id",
+                "description": "Returns one activity level",
+                "operationId": "getOneActivityLevel",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "ActivityLevel id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/aminoacid": {
+            "get": {
+                "tags": [
+                    "Aminoacid"
+                ],
+                "summary": "Get list of aminoacids",
+                "description": "Returns list of aminoacids",
+                "operationId": "getAminoacidList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/aminoacid/{id}": {
+            "get": {
+                "tags": [
+                    "Aminoacid"
+                ],
+                "summary": "Get a aminoacid by id",
+                "description": "Returns one aminoacid",
+                "operationId": "getOneAminoacid",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "AG id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cmvcol": {
+            "get": {
+                "tags": [
+                    "CMVCol"
+                ],
+                "summary": "Get list of cmvcol",
+                "description": "Returns list of cmvcol",
+                "operationId": "getCMVColList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/cmvcol/{id}": {
+            "get": {
+                "tags": [
+                    "CMVCol"
+                ],
+                "summary": "Get a CMVCol by id",
+                "description": "Returns one cmvcol",
+                "operationId": "getOneCMVCol",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "CMVCol id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/category": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get list of categories",
+                "description": "Returns list of categories",
+                "operationId": "getCategoryList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/category/{id}": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get a category by id",
+                "description": "Returns one category",
+                "operationId": "getOneCategory",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/category/{id}/food": {
+            "get": {
+                "tags": [
+                    "Category"
+                ],
+                "summary": "Get list of foods from a category",
+                "description": "Returns list of foods from a category",
+                "operationId": "getCategoryFoodList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Category id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/food": {
+            "get": {
+                "tags": [
+                    "Food"
+                ],
+                "summary": "Get list of foods",
+                "description": "Returns list of foods",
+                "operationId": "getFoodList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "contains",
+                        "in": "query",
+                        "description": "",
+                        "required": false,
+                        "style": "deepObject",
+                        "schema": {
+                            "properties": {
+                                "name": {
+                                    "type": "string",
+                                    "example": ""
+                                }
+                            },
+                            "type": "object"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/food/{id}": {
+            "get": {
+                "tags": [
+                    "Food"
+                ],
+                "summary": "Get a food by id",
+                "description": "Returns one food",
+                "operationId": "getFoodById",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Food id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal/{id}": {
+            "get": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Get a meal by id",
+                "description": "Returns one meal",
+                "operationId": "getOneMeal",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates a Meal",
+                "description": "Updates the values of a meal",
+                "operationId": "updatesMeal",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user": {
+                                        "type": "integer"
+                                    },
+                                    "hour": {
+                                        "type": "string"
+                                    },
+                                    "nickname": {
+                                        "type": "string"
+                                    },
+                                    "foods": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "food": {
+                                                    "type": "string"
+                                                },
+                                                "quantity": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal": {
+            "post": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Add a meal",
+                "description": "Add a meal",
+                "operationId": "addMeal",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user": {
+                                        "type": "integer"
+                                    },
+                                    "hour": {
+                                        "type": "string"
+                                    },
+                                    "nickname": {
+                                        "type": "string"
+                                    },
+                                    "foods": {
+                                        "type": "array",
+                                        "items": {
+                                            "properties": {
+                                                "food": {
+                                                    "type": "string"
+                                                },
+                                                "quantity": {
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal/{id}/changestatus": {
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates the status from an Meal",
+                "description": "Updates the status from an meal",
+                "operationId": "updatesMealStatus",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal/{id}/notify": {
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates the notifiable from an Meal",
+                "description": "Updates the notifiable from an meal",
+                "operationId": "updatesMealNotify",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/meal/{id}/done": {
+            "patch": {
+                "tags": [
+                    "Meal"
+                ],
+                "summary": "Updates the done status from a Meal",
+                "description": "Updates the done status from a meal",
+                "operationId": "updatesMealDone",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Meal id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/nutritionist/{id}/unlink/{user}": {
+            "patch": {
+                "tags": [
+                    "Nutritionist"
+                ],
+                "summary": "Unlink a patient from a nutritionist",
+                "description": "Unlink a patient from a nutritionist",
+                "operationId": "unlinkPatient",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Nutritionist id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "Patient id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/nutritionist/{id}/link/{user}": {
+            "patch": {
+                "tags": [
+                    "Nutritionist"
+                ],
+                "summary": "Link a patient from a nutritionist",
+                "description": "Link a patient from a nutritionist",
+                "operationId": "linkPatient",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Nutritionist id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "user",
+                        "in": "path",
+                        "description": "Patient id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/regular/{id}/meal": {
+            "get": {
+                "tags": [
+                    "RegularUser"
+                ],
+                "summary": "Get list of meals from an user",
+                "description": "Returns list of of meals from an user",
+                "operationId": "getUserMealList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get list of users",
+                "description": "Returns list of users",
+                "operationId": "getUserList",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "paginate",
+                        "in": "query",
+                        "description": "Number of customers per page",
+                        "required": false,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Add a user",
+                "description": "Add a user",
+                "operationId": "addUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "birthday": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "weight": {
+                                        "type": "integer"
+                                    },
+                                    "height": {
+                                        "type": "integer"
+                                    },
+                                    "user_type": {
+                                        "type": "string"
+                                    },
+                                    "activity_level": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a user by id",
+                "description": "Returns one user",
+                "operationId": "getOneUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            },
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Updates a User",
+                "description": "Updates the values of a user",
+                "operationId": "updatesUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "birthday": {
+                                        "type": "string"
+                                    },
+                                    "phone": {
+                                        "type": "string"
+                                    },
+                                    "weight": {
+                                        "type": "integer"
+                                    },
+                                    "height": {
+                                        "type": "integer"
+                                    },
+                                    "user_type": {
+                                        "type": "string"
+                                    },
+                                    "activity_level": {
+                                        "type": "string"
+                                    },
+                                    "gender": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}/changestatus": {
+            "patch": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Updates the status from an User",
+                "description": "Updates the status from an user",
+                "operationId": "updatesUserStatus",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "Api Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}/wishlist": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get a wishlist by user",
+                "description": "Returns a wishlist by user",
+                "operationId": "getWishlistByUser",
+                "parameters": [
+                    {
+                        "name": "api_token",
+                        "in": "query",
+                        "description": "API Token",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "User id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {}
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
