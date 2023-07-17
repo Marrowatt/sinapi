@@ -61,6 +61,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'isNutritionist' => ['sometimes'],
         ]);
     }
 
@@ -72,11 +73,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $user_type = array_key_exists('isNutritionist', $data) ? 2 : 1;
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'user_type_id' => 1,
+            'user_type_id' => $user_type,
             'api_token' => Str::random(90),
         ]);
     }

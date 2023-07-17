@@ -9,6 +9,7 @@ use App\Models\Gender;
 use App\Models\Formula;
 use App\Models\User;
 use App\Http\Resources\UserResource;
+use Illuminate\Support\Facades\Hash;
 
 class NutritionistController extends Controller
 {   
@@ -58,6 +59,19 @@ class NutritionistController extends Controller
         return redirect()->route('nutritionist.profile');
     }
 
+    public function profile_password_update (Request $request, User $user) {
+
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        auth()->user()->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return redirect()->route('nutritionist.profile');
+    }
+    
     public function patients () {
         return view('nutritionist.patients');
     }

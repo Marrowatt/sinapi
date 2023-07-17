@@ -10,6 +10,7 @@ use App\Models\Formula;
 use App\Models\User;
 
 use App\Http\Requests\RegularUpdateRequest;
+use Illuminate\Support\Facades\Hash;
 
 use App\Http\Requests\ApiRequest;
 
@@ -59,6 +60,19 @@ class RegularController extends Controller
         }
 
         $user->save();
+
+        return redirect()->route('regular.profile');
+    }
+
+    public function profile_password_update (Request $request, User $user) {
+
+        $request->validate([
+            'password' => 'required|confirmed',
+        ]);
+
+        auth()->user()->update([
+            'password' => Hash::make($request->password)
+        ]);
 
         return redirect()->route('regular.profile');
     }

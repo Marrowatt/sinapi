@@ -86,13 +86,17 @@ class User extends Authenticatable
         $height = $this->height;
         $age = Carbon::now()->diffInYears($this->birthday);
         
-        if ($this->gender->name == "Masculino") {
-            $return = 66.5 + (13.8 * $weight) + (5.0 * $height) - (6.8 * $age);
-            return round($return, 3);
-        } else {
-            $return = 655 + (9.6 * $weight) + (1.9 * $height) - (4.7 * $age);
-            return round($return, 3);
+        if ($this->gender) {
+            if ($this->gender->name == "Masculino") {
+                $return = 66.5 + (13.8 * $weight) + (5.0 * $height) - (6.8 * $age);
+                return round($return, 3);
+            } else {
+                $return = 655 + (9.6 * $weight) + (1.9 * $height) - (4.7 * $age);
+                return round($return, 3);
+            }
         }
+        
+        return 0;
     }
 
     // TMB Mifflin-St Jeor (kcal)

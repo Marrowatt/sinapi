@@ -86,7 +86,7 @@
             </div>
         </section>
 
-        <section class="call-to-action text-white text-center" id="signup">
+        {{-- <section class="call-to-action text-white text-center" id="signup">
             <div class="container position-relative">
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
@@ -107,16 +107,14 @@
                     </div>
                 </div>
             </div>
-        </section>
-        
+        </section> --}}
 
-        <footer class="footer bg-light">
+        <footer class="footer bg-light p-0 pb-4">
             <div class="container">
                 <div class="row">
                     <div class="col-auto text-center text-lg-start my-auto">
                         <p class="text-muted small mb-4 mb-lg-0">&copy; {{ config('app.name') }} {{ \Carbon\Carbon::now()->format('Y') }}. Todos os direitos reservados.</p>
                     </div>
-                    
                 </div>
             </div>
         </footer>
